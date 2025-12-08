@@ -14,63 +14,63 @@ export const AGENTS: Agent[] = [
     role: "Customer Segments",
     description: "Analytical market researcher. Helps identify target nuances.",
     icon: "👥",
-    color: "bg-blue-100 text-blue-800"
+    color: "bg-blue-500/10 text-blue-300 ring-1 ring-blue-500/20"
   },
   {
     name: "Victor Value",
     role: "Value Propositions",
     description: "Creative problem-solver. Focuses on the 'why' and 'what'.",
     icon: "🎁",
-    color: "bg-red-100 text-red-800"
+    color: "bg-red-500/10 text-red-300 ring-1 ring-red-500/20"
   },
   {
     name: "Chloe Channels",
     role: "Channels",
     description: "Strategic distribution expert. Plans how to reach customers.",
     icon: "🚚",
-    color: "bg-green-100 text-green-800"
+    color: "bg-green-500/10 text-green-300 ring-1 ring-green-500/20"
   },
   {
     name: "Rita Relations",
     role: "Customer Relationships",
     description: "Warm relationship specialist. Designs retention and loyalty strategies.",
     icon: "❤️",
-    color: "bg-pink-100 text-pink-800"
+    color: "bg-pink-500/10 text-pink-300 ring-1 ring-pink-500/20"
   },
   {
     name: "Ryan Revenue",
     role: "Revenue Streams",
     description: "Numbers-oriented financial strategist. Maximizes income potential.",
     icon: "💰",
-    color: "bg-yellow-100 text-yellow-800"
+    color: "bg-yellow-500/10 text-yellow-300 ring-1 ring-yellow-500/20"
   },
   {
     name: "Rebecca Resources",
     role: "Key Resources",
     description: "Practical operations expert. Identifies essential assets.",
     icon: "🏗️",
-    color: "bg-slate-100 text-slate-800"
+    color: "bg-slate-500/10 text-slate-300 ring-1 ring-slate-500/20"
   },
   {
     name: "Alex Activities",
     role: "Key Activities",
     description: "Efficiency-minded process specialist. Defines core workflows.",
     icon: "⚙️",
-    color: "bg-orange-100 text-orange-800"
+    color: "bg-orange-500/10 text-orange-300 ring-1 ring-orange-500/20"
   },
   {
     name: "Parker Partners",
     role: "Key Partnerships",
     description: "Network-savvy business developer. Connects with suppliers and allies.",
     icon: "🤝",
-    color: "bg-indigo-100 text-indigo-800"
+    color: "bg-indigo-500/10 text-indigo-300 ring-1 ring-indigo-500/20"
   },
   {
     name: "Carlos Costs",
     role: "Cost Structure",
     description: "Pragmatic financial analyst. Detailed breakdown of expenses.",
     icon: "📉",
-    color: "bg-gray-100 text-gray-800"
+    color: "bg-gray-500/10 text-gray-300 ring-1 ring-gray-500/20"
   }
 ];
 

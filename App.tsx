@@ -18,29 +18,29 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-brand-dark text-slate-200">
       {/* Navbar */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-dark/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className={`font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 ${scrolled ? 'text-brand-dark' : 'text-white'}`}>
+          <div className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white">
              <span className="text-2xl">🏘️</span> BMC TOWN
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a 
               href="#features" 
-              className={`transition-colors ${scrolled ? 'text-slate-600 hover:text-indigo-500' : 'text-slate-200 hover:text-indigo-400'}`}
+              className="transition-colors text-slate-300 hover:text-indigo-500"
             >
               Features
             </a>
             <a 
               href="#agents" 
-              className={`transition-colors ${scrolled ? 'text-slate-600 hover:text-indigo-500' : 'text-slate-200 hover:text-indigo-400'}`}
+              className="transition-colors text-slate-300 hover:text-indigo-500"
             >
               The Experts
             </a>
             <a 
               href="#demo" 
-              className={`transition-colors ${scrolled ? 'text-slate-600 hover:text-indigo-500' : 'text-slate-200 hover:text-indigo-400'}`}
+              className="transition-colors text-slate-300 hover:text-indigo-500"
             >
               Talk to Demo
             </a>
