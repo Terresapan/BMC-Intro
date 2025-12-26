@@ -18,8 +18,8 @@ export const AuthorSection: React.FC = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative bg-brand-dark rounded-2xl overflow-hidden border border-white/10 aspect-[4/5] shadow-2xl">
                 <img 
-                  src="https://placehold.co/600x750/1e1b4b/d946ef?text=Terresa+Pan&font=montserrat" 
-                  alt="Terresa Pan" 
+                  src="/mm.jpg" 
+                  alt="Terresa Pan - Stanford GSB Sloan Fellow and AI Strategist" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent">
@@ -32,7 +32,7 @@ export const AuthorSection: React.FC = () => {
               </div>
               
               {/* Achievement badges */}
-              <div className="absolute -right-6 top-10 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block animate-float-slow">
+              <div className="absolute -right-6 top-10 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block motion-safe:animate-float-slow">
                 <div className="flex items-center gap-3">
                   <div className="bg-fuchsia-500/20 p-2 rounded-lg text-fuchsia-400">
                     <Rocket className="w-5 h-5" />
@@ -44,7 +44,7 @@ export const AuthorSection: React.FC = () => {
                 </div>
               </div>
               
-              <div className="absolute -left-6 bottom-20 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block animate-float-medium">
+              <div className="absolute -left-6 bottom-20 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block motion-safe:animate-float-medium">
                 <div className="flex items-center gap-3">
                   <div className="bg-indigo-500/20 p-2 rounded-lg text-indigo-400">
                     <Briefcase className="w-5 h-5" />

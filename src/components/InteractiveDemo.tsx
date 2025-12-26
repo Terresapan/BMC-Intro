@@ -91,18 +91,16 @@ export const InteractiveDemo: React.FC = () => {
       {/* 1. Base Radial Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-fuchsia-900 via-brand-dark to-brand-dark"></div>
 
-      {/* 2. Subtle Texture Overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/1920/1080?grayscale')] bg-cover bg-center mix-blend-overlay pointer-events-none"></div>
+      {/* 2. Subtle Noise Texture Overlay */}
+      <div className="absolute inset-0 opacity-[0.12] mix-blend-overlay pointer-events-none" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"}}></div>
       
-      {/* 3. Glowing Animated Blobs */}
+      {/* 3. Glowing Animated Blobs (reduced to 2) */}
       <div className="absolute top-10 right-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-3xl motion-safe:animate-blob pointer-events-none"></div>
       <div className="absolute bottom-10 left-[10%] w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-2000 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-4000 pointer-events-none"></div>
 
-      {/* Floating Particles */}
+      {/* Floating Particles (reduced to 2) */}
       <div className="absolute top-1/4 right-20 w-3 h-3 bg-fuchsia-400/20 rounded-full motion-safe:animate-float-slow pointer-events-none"></div>
       <div className="absolute bottom-1/3 left-32 w-4 h-4 bg-indigo-400/20 rounded-full motion-safe:animate-float-medium pointer-events-none"></div>
-      <div className="absolute top-20 left-1/4 w-2 h-2 bg-purple-400/20 rounded-full motion-safe:animate-float-fast pointer-events-none"></div>
 
       {/* --- Content --- */}
       
@@ -193,7 +191,6 @@ export const InteractiveDemo: React.FC = () => {
                 <Button 
                   onClick={handleSend}
                   disabled={loading || !input.trim()}
-                  variant="purple"
                   size="icon"
                   aria-label="Send message"
                 >

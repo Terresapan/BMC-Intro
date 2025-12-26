@@ -1,9 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const navLinks = [
+  { href: "#features", label: "Features" },
+  { href: "#agents", label: "The Experts" },
+  { href: "#demo", label: "Talk to Demo" },
+  { href: "#qa", label: "Vision" },
+];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,49 +23,132 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when clicking a link
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-dark/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+    <>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-dark/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-            <div className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white">
-                <span className="text-2xl">🏘️</span> BMC TOWN
-            </div>
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a 
-                href="#features" 
-                className="transition-colors text-slate-300 hover:text-indigo-500"
+          <div className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white">
+            <span className="text-2xl">🏘️</span> BMC TOWN
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+            {navLinks.map((link) => (
+              <a 
+                key={link.href}
+                href={link.href} 
+                className="transition-colors text-slate-300 hover:text-fuchsia-400"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          
+          <div className="flex items-center gap-3">
+            {/* Desktop CTA */}
+            <Button 
+              asChild
+              variant="navCta"
+              size="sm"
+              className="hidden sm:inline-flex"
             >
-                Features
-            </a>
-            <a 
-                href="#agents" 
-                className="transition-colors text-slate-300 hover:text-indigo-500"
-            >
-                The Experts
-            </a>
-            <a 
-                href="#demo" 
-                className="transition-colors text-slate-300 hover:text-indigo-500"
-            >
-                Talk to Demo
-            </a>
-            <a 
-                href="#qa" 
-                className="transition-colors text-slate-300 hover:text-indigo-500"
-            >
-                Vision
-            </a>
-            </div>
-            <div className="flex items-center gap-3">
-            <a 
+              <a 
                 href="https://bmc-town-ai-cost-simulator-18196303090.us-west1.run.app/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 hover:opacity-90 text-white text-xs font-bold py-2 px-4 rounded shadow-lg shadow-purple-500/20 transition-transform hover:scale-105 uppercase tracking-wide"
-            >
+              >
                 Cost Simulator
-            </a>
-            </div>
+              </a>
+            </Button>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        
+        {/* Menu Content */}
+        <div className={`absolute inset-x-0 top-0 pt-24 px-6 pb-8 transition-transform duration-300 ${
+          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}>
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link, index) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleLinkClick}
+                className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 text-lg font-medium text-slate-200 hover:bg-white/10 hover:text-fuchsia-400 hover:border-fuchsia-500/30 transition-all"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                {link.label}
+                <span className="text-slate-500">→</span>
+              </a>
+            ))}
+          </nav>
+          
+          {/* Mobile CTA */}
+          <div className="mt-6">
+            <Button 
+              asChild
+              variant="gradient"
+              size="lg"
+              className="w-full"
+            >
+              <a 
+                href="https://bmc-town-ai-cost-simulator-18196303090.us-west1.run.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+              >
+                Cost Simulator
+              </a>
+            </Button>
+          </div>
+          
+          {/* Mobile footer info */}
+          <div className="mt-8 pt-6 border-t border-white/10 text-center">
+            <p className="text-xs text-slate-500">
+              © {new Date().getFullYear()} Business Model Canvas Town
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

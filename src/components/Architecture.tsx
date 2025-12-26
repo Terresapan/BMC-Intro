@@ -26,8 +26,8 @@ export const Architecture: React.FC = () => {
         <div className="mb-20 flex justify-center px-4">
             <div className="relative w-full max-w-5xl rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-indigo-500/10 aspect-video group">
               <img 
-                src="https://placehold.co/1200x675/0f0720/6366f1?text=LangGraph+Proactive+Agent+Workflow&font=montserrat" 
-                alt="BMC Town Tech Stack Architecture" 
+                src="/teckstack.png" 
+                alt="BMC Town Multi-Agent Architecture - LangGraph Proactive Agent Workflow" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
@@ -37,7 +37,7 @@ export const Architecture: React.FC = () => {
                   <p className="text-white font-bold">Multi-Agent State Orchestration</p>
                 </div>
                 <div className="flex gap-2">
-                  <span className="px-3 py-1 bg-brand-dark/80 rounded-full text-[10px] font-bold text-slate-300 border border-white/5">GEMINI 2.5</span>
+                  <span className="px-3 py-1 bg-brand-dark/80 rounded-full text-[10px] font-bold text-slate-300 border border-white/5">GEMINI 3</span>
                   <span className="px-3 py-1 bg-brand-dark/80 rounded-full text-[10px] font-bold text-slate-300 border border-white/5">LANGGRAPH</span>
                 </div>
               </div>
