@@ -1,9 +1,12 @@
+"use client";
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, User, Loader2 } from 'lucide-react';
 import { GenerateContentResponse } from "@google/genai";
 import { streamChatResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export const InteractiveDemo: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -92,14 +95,14 @@ export const InteractiveDemo: React.FC = () => {
       <div className="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/1920/1080?grayscale')] bg-cover bg-center mix-blend-overlay pointer-events-none"></div>
       
       {/* 3. Glowing Animated Blobs */}
-      <div className="absolute top-10 right-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-blob pointer-events-none"></div>
-      <div className="absolute bottom-10 left-[10%] w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl animate-blob animation-delay-4000 pointer-events-none"></div>
+      <div className="absolute top-10 right-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-3xl motion-safe:animate-blob pointer-events-none"></div>
+      <div className="absolute bottom-10 left-[10%] w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-2000 pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-4000 pointer-events-none"></div>
 
       {/* Floating Particles */}
-      <div className="absolute top-1/4 right-20 w-3 h-3 bg-fuchsia-400/20 rounded-full animate-float-slow pointer-events-none"></div>
-      <div className="absolute bottom-1/3 left-32 w-4 h-4 bg-indigo-400/20 rounded-full animate-float-medium pointer-events-none"></div>
-      <div className="absolute top-20 left-1/4 w-2 h-2 bg-purple-400/20 rounded-full animate-float-fast pointer-events-none"></div>
+      <div className="absolute top-1/4 right-20 w-3 h-3 bg-fuchsia-400/20 rounded-full motion-safe:animate-float-slow pointer-events-none"></div>
+      <div className="absolute bottom-1/3 left-32 w-4 h-4 bg-indigo-400/20 rounded-full motion-safe:animate-float-medium pointer-events-none"></div>
+      <div className="absolute top-20 left-1/4 w-2 h-2 bg-purple-400/20 rounded-full motion-safe:animate-float-fast pointer-events-none"></div>
 
       {/* --- Content --- */}
       
@@ -175,23 +178,27 @@ export const InteractiveDemo: React.FC = () => {
 
             {/* Input Area */}
             <div className="p-4 border-t border-white/10 bg-slate-900/50">
-              <div className="relative">
-                <input
+              <div className="relative flex gap-2">
+                <label htmlFor="chat-input" className="sr-only">Type your message to the Town Greeter</label>
+                <Input
+                  id="chat-input"
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Say hello to the greeter..."
                   disabled={loading}
-                  className="w-full bg-slate-800/50 text-white rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/10 placeholder-slate-500 transition-all"
+                  className="bg-slate-800/50 text-white border-white/10 focus-visible:ring-purple-500 placeholder:text-slate-500"
                 />
-                <button 
+                <Button 
                   onClick={handleSend}
                   disabled={loading || !input.trim()}
-                  className="absolute right-2 top-2 p-1.5 bg-purple-600 text-white rounded-md hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-purple-900/20"
+                  variant="purple"
+                  size="icon"
+                  aria-label="Send message"
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                </button>
+                </Button>
               </div>
               <div className="text-center mt-2">
                 <span className="text-[10px] text-slate-500 uppercase tracking-widest">Powered by Gemini 2.5 Flash</span>

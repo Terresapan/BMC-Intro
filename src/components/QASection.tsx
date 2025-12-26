@@ -1,3 +1,4 @@
+"use client";
 
 import React, { useState } from 'react';
 import { QA_CONTENT } from '../constants';

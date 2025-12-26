@@ -1,7 +1,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 
 const SYSTEM_INSTRUCTION = `
@@ -22,7 +22,7 @@ export const streamChatResponse = async (
   }
 
   const chat = ai.chats.create({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-2.5-flash-lite',
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
       temperature: 0.7,
