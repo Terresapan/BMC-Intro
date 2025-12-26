@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 
@@ -12,7 +13,6 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/1920/1080?grayscale')] bg-cover bg-center mix-blend-overlay"></div>
       
       {/* 3. Glowing Animated Blobs (Adapted for Dark Background) */}
-      {/* Removed mix-blend-multiply so they glow instead of darken */}
       <div className="absolute top-0 left-[10%] w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-blob"></div>
       <div className="absolute top-0 right-[10%] w-96 h-96 bg-fuchsia-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-32 left-[30%] w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
           <span className="animate-pulse text-fuchsia-400">✨</span> <span className="text-fuchsia-200">Now in Public Beta</span>
         </div>
         
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-white sm:text-7xl mb-8 drop-shadow-2xl">
+        <h1 className="mx-auto max-w-5xl font-pixel text-4xl font-bold tracking-tight text-white sm:text-6xl mb-8 drop-shadow-2xl leading-tight">
           Transform Strategy into <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400 filter drop-shadow-lg">
             An Adventure

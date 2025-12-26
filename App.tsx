@@ -72,8 +72,8 @@ function App() {
         <FeatureGrid />
         <AgentShowcase />
         <InteractiveDemo />
-        <QASection />
         <AuthorSection />
+        <QASection />
         <Architecture />
       </main>
 

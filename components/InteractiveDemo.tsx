@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, User, Loader2 } from 'lucide-react';
 import { GenerateContentResponse } from "@google/genai";
@@ -110,10 +111,10 @@ export const InteractiveDemo: React.FC = () => {
             <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20 mb-6 backdrop-blur-sm border border-indigo-500/10">
               <Sparkles className="w-3 h-3" /> Live Demo
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6 drop-shadow-lg">
-              Talk to the Town
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6 drop-shadow-lg font-pixel leading-tight">
+              Talk to <br/>the Town
             </h2>
-            <p className="text-lg text-slate-300 mb-8 drop-shadow-md">
+            <p className="text-lg text-slate-300 mb-8 drop-shadow-md font-light">
               Experience the power of our conversational agents. Ask the Greeter about the different districts, or describe a business problem you have.
             </p>
             <div className="space-y-4">

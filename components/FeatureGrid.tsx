@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { FEATURES, PERSONAS } from '../constants';
 
@@ -13,12 +14,12 @@ export const FeatureGrid: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         
         {/* Core Features */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">Why Move to Town?</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        <div className="mx-auto max-w-4xl text-center mb-16">
+          <h2 className="text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400 uppercase tracking-widest">Why Move to Town?</h2>
+          <p className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl font-pixel leading-tight">
             Democratizing Business Strategy
           </p>
-          <p className="mt-6 text-lg leading-8 text-slate-400">
+          <p className="mt-6 text-lg leading-8 text-slate-400 font-light">
             We replace dry spreadsheets with a living world. Engage with your strategy 
             through movement, exploration, and conversation.
           </p>
@@ -45,7 +46,7 @@ export const FeatureGrid: React.FC = () => {
         {/* Target Audience / Personas */}
         <div className="mt-32 border-t border-white/10 pt-24">
            <div className="mx-auto max-w-2xl text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-white">Built For You</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-white font-pixel">Built For You</h2>
             <p className="mt-4 text-slate-400">Whether you're starting up or scaling up.</p>
           </div>
           
