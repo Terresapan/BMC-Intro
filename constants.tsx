@@ -1,11 +1,23 @@
-import { Agent, Persona } from './types';
+
+import { Agent, Persona, QAItem } from './types';
 import { 
   Map, 
   Users, 
   Brain, 
   FileText, 
   ShieldCheck, 
-  Cpu 
+  Cpu,
+  Info,
+  AlertCircle,
+  Zap,
+  GraduationCap,
+  LineChart,
+  Scale,
+  Flag,
+  Wallet,
+  Globe,
+  Database,
+  History
 } from 'lucide-react';
 
 export const AGENTS: Agent[] = [
@@ -99,33 +111,76 @@ export const PERSONAS: Persona[] = [
 
 export const FEATURES = [
   {
-    title: "Interactive Town",
-    description: "Explore a pixel-art RPG world. Walk around, find buildings, and discover experts.",
-    icon: Map
+    title: "Proactive Advisor",
+    description: "Our 'Canvas Advisor' automatically surfaces cross-canvas insights, mimicking a real consultant connecting the dots.",
+    icon: Brain
   },
   {
-    title: "Personalized Agents",
-    description: "Agents know who you are. They address you by name and tailor advice to your specific challenges.",
-    icon: Users
+    title: "Living Context",
+    description: "Memory extraction workflows ensure all nine experts 'remember' and build upon your progress across sessions.",
+    icon: History
   },
   {
-    title: "Multimodal Intelligence",
-    description: "Upload PDFs and Images. Agents can 'see' your sketches and read your reports.",
-    icon: FileText
+    title: "Multimodal AI",
+    description: "Gemini-powered processing of text, PDFs, and images for a seamless strategic planning experience.",
+    icon: Globe
   },
   {
     title: "Expert Consultants",
     description: "Nine specialized AI agents representing every building block of the Business Model Canvas.",
-    icon: Brain
+    icon: Users
   },
   {
-    title: "Smart Security",
-    description: "Token-based auth and strict data isolation ensure your strategy remains confidential.",
+    title: "Secure Strategy",
+    description: "Token-based auth and strict data isolation ensure your strategy remains confidential and personal.",
     icon: ShieldCheck
   },
   {
-    title: "Modern Stack",
-    description: "Built with Phaser 3, FastAPI, LangGraph, and Google Gemini for top-tier performance.",
-    icon: Cpu
+    title: "Modern Synthesis",
+    description: "Real-time progress previews and professional PDF exports for immediate action and sharing.",
+    icon: FileText
+  }
+];
+
+export const QA_CONTENT: QAItem[] = [
+  {
+    question: "Summary: What’s your idea?",
+    answer: "BMC Town is a gamified, AI-powered platform designed to democratize high-level business strategy for under-resourced entrepreneurs. Built within an engaging pixel-art RPG world, the platform features nine specialized AI agents—such as 'Victor Value' and 'Ryan Revenue'—who act as persistent, 24/7 business consultants. These agents guide users through the Business Model Canvas (BMC) framework, providing personalized advice grounded in the user's specific business data.\n\nWhat sets BMC Town apart is its Proactive Agent Architecture: a 'Canvas Advisor' that automatically surfaces cross-canvas insights without being asked. For example, when discussing customer segments, the system proactively suggests relevant channel strategies—mimicking how a real consultant connects the dots across business areas. Combined with Gemini search grounding, multimodal AI (processing text, PDFs, and images), and 'Shared Living Context' that remembers user progress across sessions, BMC Town bridges the gap between limited human-led consulting and the need for ongoing, expert-level strategic refinement.",
+    icon: Info
+  },
+  {
+    question: "The Problem",
+    answer: "Under-resourced small business owners—specifically the 90% woman-owned and 60% black-owned businesses supported by TAP—often lack affordable access to high-impact strategic consulting. While nonprofit programs provide vital human-led sessions, these resources are finite; support often ceases once the session ends. Entrepreneurs require a low-barrier, persistent way to practice and validate their business models without the constant presence of a volunteer consultant.\n\nExisting strategy tools are often dry, form-based, and siloed—they don't connect insights across different parts of the business model the way a skilled consultant would. BMC Town solves this by providing an 'always-on' AI advisory system that scales the expertise of a professional consultant to thousands of users simultaneously. Its Proactive Canvas Advisor goes beyond reactive Q&A—it actively identifies cross-canvas implications and stages them for user confirmation, ensuring business owners don't miss critical strategic connections.",
+    icon: AlertCircle
+  },
+  {
+    question: "Our Approach",
+    answer: "BMC Town utilizes a Multi-Agent Architecture powered by Google Gemini and LangGraph to deliver high-impact mentorship. Unlike generic chatbots, our approach features:\n\n• Pre-configured Personalization: Admins pre-load business profiles, enabling AI experts to greet users by name and engage with their specific strategic context.\n• Shared Living Context: Memory extraction runs inside each workflow, persisting business insights in real-time. This ensures all nine experts 'remember' and build upon a user's progress.\n• Proactive Canvas Advisor: Our system actively generates cross-canvas suggestions. When a user discusses 'enterprise customers', the Advisor surfaces implications (e.g., 'Consider dedicated account management') for the next relevant expert.\n• Strategy Synthesis & Export: Users preview progress in real-time and download a professional PDF of their Business Model Canvas, automatically populated with strategic points.",
+    icon: Zap
+  },
+  {
+    question: "Learning Science & Design",
+    answer: "BMC Town leverages proven learning science and UX principles:\n\n• Scaffolding & Gamification: A Phaser 3-powered virtual world transforms static strategy planning into an interactive journey, reducing cognitive load. Each agent acts as a Cognitive Apprentice.\n• Zone of Proximal Development: The Proactive Canvas Advisor identifies connections users might miss on their own, guiding learners just beyond their current understanding.\n• Continuity of Learning: The 'Shared Living Context' creates a coherent learning narrative rather than isolated interactions.\n• Learner Agency & Metacognition: Users maintain full authority. Proactive suggestions are staged (marked [SYS]) rather than auto-applied—users must explicitly confirm or reject them, encouraging critical reflection.\n• Non-Intrusive Feedback: System suggestions appear as dismissible tooltips, respecting user attention while surfacing insights at the right moment.",
+    icon: GraduationCap
+  },
+  {
+    question: "Measuring Impact",
+    answer: "We aim for a 50% boost in user engagement and significant time savings for founders. Success metrics include:\n\n• Business Literacy Gains: Tracking completion of all nine BMC blocks. We measure how often cross-canvas suggestions lead to blocks users wouldn't have completed independently.\n• Proactive Value Metrics: Monitoring [SYS] suggestion acceptance rates. High confirmation rates indicate the AI is surfacing genuinely useful connections.\n• Consulting Scalability: Measuring reduction in wait times for human consultants as the AI handles routine strategic questions and synthesis.\n• Quality Assurance: Utilizing LangSmith to monitor Hallucination Detection, Memory Extraction Accuracy, and Document grounding verification.",
+    icon: LineChart
+  },
+  {
+    question: "Fairness & Inclusion",
+    answer: "Designed intentionally for entrepreneurs traditionally excluded from expensive consulting networks, BMC Town promotes inclusion by:\n\n• Democratizing Strategic Insight: Bringing professional cross-business connection identifying skills to everyone via the Proactive Canvas Advisor.\n• Preserving User Agency: All AI suggestions are staged, not applied. Users maintain full authority over their business narrative—the AI advises, never decides.\n• Multimodal Accessibility: Users communicate via sketches, PDFs, or verbal notes, supporting diverse learning styles and training backgrounds.\n• Contextual Personalization: Agents address users by name and acknowledge specific business challenges, respecting the individual's context.\n• Identity Safety: Automated evaluation pipelines ensure AI agents never break character or provide biased responses.",
+    icon: Scale
+  },
+  {
+    question: "Success Plan (Year 1)",
+    answer: "• Month 3: Complete pilot testing with 50 businesses; validate the Proactive Canvas Advisor and refine cross-canvas logic.\n• Month 6: Launch the Cohort Intelligence Layer. Aggregate anonymized patterns to provide community-wisdom recommendations (e.g., '87% of B2B SaaS founders in your cohort use Direct Sales').\n• Month 9: Implement Event-Driven Notifications. Agents proactively reach out (via email or in-app) when they detect strategic opportunities between sessions.\n• Month 12: Achieve 70%+ satisfaction rate. Target: 500+ completed, validated Business Model Canvases with measurable reduction in human consultant wait times.",
+    icon: Flag
+  },
+  {
+    question: "Budget & Funding ($50,000)",
+    answer: "• Technology & Infrastructure (25% / $12,500): Scaling Google Cloud Run and MongoDB Atlas for 2,000+ concurrent users.\n• Research & User Testing (25% / $12,500): Deep-dive feedback sessions with black-owned and woman-owned businesses to validate proactive suggestion quality.\n• AI Development (35% / $17,500): Building the Cohort Intelligence Layer, model fine-tuning for improved expert personas, and enhancing the LangSmith evaluation pipeline.\n• Asset Creation & Accessibility (15% / $7,500): Expanding the Town environment, mobile-responsive design, onboarding tutorials, and shareable Canvas exports.",
+    icon: Wallet
   }
 ];

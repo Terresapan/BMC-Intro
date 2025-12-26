@@ -1,3 +1,4 @@
+
 import { GoogleGenAI } from "@google/genai";
 
 const apiKey = process.env.API_KEY || '';
@@ -20,12 +21,8 @@ export const streamChatResponse = async (
     throw new Error("API Key not found");
   }
 
-  // Convert history to Gemini format if needed, though for a simple demo 
-  // we might just treat every message as fresh context or use a chat session.
-  // Here we use a chat session for continuity.
-  
   const chat = ai.chats.create({
-    model: 'gemini-2.5-flash-lite',
+    model: 'gemini-3-flash-preview',
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
       temperature: 0.7,

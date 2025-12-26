@@ -1,9 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { FeatureGrid } from './components/FeatureGrid';
 import { AgentShowcase } from './components/AgentShowcase';
 import { InteractiveDemo } from './components/InteractiveDemo';
 import { Architecture } from './components/Architecture';
+import { QASection } from './components/QASection';
+import { AuthorSection } from './components/AuthorSection';
 import { Footer } from './components/Footer';
 
 function App() {
@@ -44,6 +47,12 @@ function App() {
             >
               Talk to Demo
             </a>
+            <a 
+              href="#qa" 
+              className="transition-colors text-slate-300 hover:text-indigo-500"
+            >
+              Vision
+            </a>
           </div>
           <div className="flex items-center gap-3">
             <a 
@@ -63,6 +72,8 @@ function App() {
         <FeatureGrid />
         <AgentShowcase />
         <InteractiveDemo />
+        <QASection />
+        <AuthorSection />
         <Architecture />
       </main>
 

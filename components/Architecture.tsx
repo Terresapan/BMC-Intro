@@ -1,74 +1,110 @@
+
 import React from 'react';
-import { Database, Layout, Server, BrainCircuit } from 'lucide-react';
+import { Database, Layout, Server, BrainCircuit, Search, GitBranch } from 'lucide-react';
 
 export const Architecture: React.FC = () => {
   return (
-    <section className="py-24 bg-brand-dark border-t border-white/5">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-2xl text-center mb-12">
-          <h2 className="text-base font-semibold text-purple-400">Under the Hood</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Modern System Architecture
+    <section className="py-24 bg-brand-dark border-t border-white/5 relative overflow-hidden">
+      {/* Visual background lines */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent"></div>
+        <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-3xl text-center mb-16">
+          <h2 className="text-base font-semibold text-fuchsia-400 uppercase tracking-widest">System Engineering</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl font-pixel">
+            Multi-Agent Intelligence
           </p>
           <p className="mt-6 text-lg text-slate-400">
-            A scalable, high-performance stack designed for enterprise-grade intelligence and security.
+            Orchestrating complex strategic reasoning with persistent memory and proactive insight delivery.
           </p>
         </div>
 
-        {/* Architecture Diagram */}
-        <div className="mb-16 flex justify-center">
-            <img 
-              src="https://placehold.co/1200x600/1e1b4b/a855f7?text=Architecture+Diagram&font=montserrat" 
-              alt="BMC Town Tech Stack Architecture" 
-              className="rounded-xl shadow-2xl shadow-purple-900/20 border border-white/10 w-full max-w-5xl object-cover"
-            />
+        {/* Architecture Diagram Placeholder */}
+        <div className="mb-20 flex justify-center px-4">
+            <div className="relative w-full max-w-5xl rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-indigo-500/10 aspect-video group">
+              <img 
+                src="https://placehold.co/1200x675/0f0720/6366f1?text=LangGraph+Proactive+Agent+Workflow&font=montserrat" 
+                alt="BMC Town Tech Stack Architecture" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
+              <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+                <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                  <p className="text-xs font-mono text-fuchsia-400 uppercase tracking-widest mb-1">Workflow Engine</p>
+                  <p className="text-white font-bold">Multi-Agent State Orchestration</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="px-3 py-1 bg-brand-dark/80 rounded-full text-[10px] font-bold text-slate-300 border border-white/5">GEMINI 2.5</span>
+                  <span className="px-3 py-1 bg-brand-dark/80 rounded-full text-[10px] font-bold text-slate-300 border border-white/5">LANGGRAPH</span>
+                </div>
+              </div>
+            </div>
         </div>
 
-        <div className="relative">
-            {/* Connecting Line (Visual only) */}
-            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-900/50 to-transparent -z-10 -translate-y-1/2"></div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {/* Step 1: Frontend */}
-                <div className="bg-white/5 p-6 rounded-xl shadow-sm border border-white/5 text-center relative group hover:-translate-y-1 transition-transform backdrop-blur-sm">
-                    <div className="w-12 h-12 mx-auto bg-fuchsia-500/10 rounded-full flex items-center justify-center text-fuchsia-400 mb-4 group-hover:bg-fuchsia-600 group-hover:text-white transition-colors ring-1 ring-fuchsia-500/20">
-                        <Layout className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-bold text-white">Phaser 3 Engine</h3>
-                    <p className="text-sm text-slate-400 mt-2">Responsive Web App (JS)</p>
-                    <p className="text-xs text-slate-500 mt-1">Immersive pixel-art rendering & physics</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Frontend */}
+            <div className="bg-slate-900/40 p-8 rounded-2xl border border-white/5 hover:border-fuchsia-500/30 transition-all group backdrop-blur-md">
+                <div className="w-12 h-12 bg-fuchsia-500/10 rounded-xl flex items-center justify-center text-fuchsia-400 mb-6 group-hover:bg-fuchsia-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-fuchsia-500/20">
+                    <Layout className="w-6 h-6" />
                 </div>
-
-                {/* Step 2: Backend */}
-                <div className="bg-white/5 p-6 rounded-xl shadow-sm border border-white/5 text-center relative group hover:-translate-y-1 transition-transform backdrop-blur-sm">
-                    <div className="w-12 h-12 mx-auto bg-purple-500/10 rounded-full flex items-center justify-center text-purple-400 mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors ring-1 ring-purple-500/20">
-                        <Server className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-bold text-white">FastAPI & LangGraph</h3>
-                    <p className="text-sm text-slate-400 mt-2">Python Orchestration</p>
-                    <p className="text-xs text-slate-500 mt-1">Async workflow management</p>
-                </div>
-
-                {/* Step 3: Intelligence */}
-                <div className="bg-white/5 p-6 rounded-xl shadow-sm border border-white/5 text-center relative group hover:-translate-y-1 transition-transform backdrop-blur-sm">
-                    <div className="w-12 h-12 mx-auto bg-indigo-500/10 rounded-full flex items-center justify-center text-indigo-400 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors ring-1 ring-indigo-500/20">
-                        <BrainCircuit className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-bold text-white">Google Gemini</h3>
-                    <p className="text-sm text-slate-400 mt-2">Cognitive Core</p>
-                    <p className="text-xs text-slate-500 mt-1">Multimodal context & agent personas</p>
-                </div>
-
-                {/* Step 4: Data */}
-                <div className="bg-white/5 p-6 rounded-xl shadow-sm border border-white/5 text-center relative group hover:-translate-y-1 transition-transform backdrop-blur-sm">
-                    <div className="w-12 h-12 mx-auto bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors ring-1 ring-blue-500/20">
-                        <Database className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-bold text-white">MongoDB Atlas</h3>
-                    <p className="text-sm text-slate-400 mt-2">Cloud Persistence</p>
-                    <p className="text-xs text-slate-500 mt-1">Secure user profiles & game state</p>
+                <h3 className="text-xl font-bold text-white mb-3">Phaser 3 Game Interface</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  A high-performance RPG engine delivering an immersive pixel-art experience that reduces cognitive load during strategy sessions.
+                </p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">React</span>
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">TypeScript</span>
                 </div>
             </div>
+
+            {/* Orchestration */}
+            <div className="bg-slate-900/40 p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all group backdrop-blur-md">
+                <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-indigo-500/20">
+                    <GitBranch className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">LangGraph Workflows</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  Complex state management orchestrating 9 specialized agents and the Proactive Canvas Advisor for cross-canvas synthesis.
+                </p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">FastAPI</span>
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">Python</span>
+                </div>
+            </div>
+
+            {/* Cognitive Core */}
+            <div className="bg-slate-900/40 p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all group backdrop-blur-md">
+                <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-purple-500/20">
+                    <Search className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Gemini 2.5 Multimodal</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  The cognitive core utilizing search grounding and multimodal inputs (PDFs, images) to process real-world business data.
+                </p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">Search Grounding</span>
+                  <span className="px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-slate-500">Vision</span>
+                </div>
+            </div>
+        </div>
+
+        {/* Persistence Banner */}
+        <div className="mt-12 bg-gradient-to-r from-fuchsia-600/10 via-indigo-600/10 to-transparent p-6 rounded-2xl border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-sm">
+          <div className="flex items-center gap-4">
+            <div className="bg-brand-dark p-3 rounded-lg border border-white/10">
+              <Database className="w-6 h-6 text-fuchsia-400" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold">Shared Living Context</h4>
+              <p className="text-sm text-slate-400 italic">Memory extraction persists insights across all town districts.</p>
+            </div>
+          </div>
+          <div className="font-mono text-[10px] text-slate-500 uppercase tracking-[0.2em]">
+            Syncing: MongoDB Atlas Architecture
+          </div>
         </div>
       </div>
     </section>
