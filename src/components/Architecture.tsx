@@ -1,5 +1,97 @@
-import React from 'react';
-import { Database, Layout, Server, BrainCircuit, Search, GitBranch, Workflow, Zap } from 'lucide-react';
+"use client";
+
+import React, { useState, useRef, useEffect } from 'react';
+import { Database, Layout, Search, GitBranch, Workflow, Zap, ZoomIn } from 'lucide-react';
+
+interface ZoomableImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) => {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const mouseStartRef = useRef({ x: 0, y: 0 });
+
+  const ZOOM_LEVEL = 0.9;
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    mouseStartRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !isZoomed) return;
+    e.preventDefault();
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+    setPosition({ x: newX, y: newY });
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    setIsDragging(false);
+    
+    // Check for click (minimal movement)
+    const moveX = Math.abs(e.clientX - mouseStartRef.current.x);
+    const moveY = Math.abs(e.clientY - mouseStartRef.current.y);
+    
+    if (moveX < 5 && moveY < 5) {
+      if (isZoomed) {
+        // Zoom out
+        setIsZoomed(false);
+        setPosition({ x: 0, y: 0 });
+      } else {
+        // Zoom in
+        setIsZoomed(true);
+      }
+    }
+  };
+
+  return (
+    <div 
+      className={`relative overflow-hidden ${isZoomed ? 'cursor-grab active:cursor-grabbing' : 'cursor-zoom-in'} ${className}`}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={() => setIsDragging(false)}
+    >
+      <img 
+        src={src} 
+        alt={alt} 
+        draggable={false}
+        className="w-full h-full object-contain transition-transform duration-500 ease-in-out origin-center select-none"
+        style={{ 
+          transform: `translate(${position.x}px, ${position.y}px) scale(${isZoomed ? ZOOM_LEVEL : 1})` 
+        }}
+      />
+      
+      {/* Interaction Hint Overlay */}
+      <div className={`absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2 transition-opacity duration-300 pointer-events-none ${isZoomed ? 'opacity-0' : 'opacity-100'}`}>
+        <ZoomIn className="w-3 h-3 text-fuchsia-400" />
+        <span className="text-[10px] text-slate-300 font-medium">Click to Explore</span>
+      </div>
+
+       {/* Reset Button - Shows when zoomed */}
+       <div className={`absolute top-4 right-4 transition-opacity duration-300 ${isZoomed ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsZoomed(false);
+            setPosition({ x: 0, y: 0 });
+          }}
+          className="bg-fuchsia-500/20 hover:bg-fuchsia-500/40 border border-fuchsia-500/50 text-fuchsia-200 px-3 py-1.5 rounded-full text-[10px] font-medium transition-all shadow-lg backdrop-blur-md"
+        >
+          Reset View
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export const Architecture: React.FC = () => {
   return (
@@ -99,10 +191,10 @@ export const Architecture: React.FC = () => {
                 
                 <div className="relative overflow-hidden border-2 border-white/10 group-hover:border-purple-500/30 transition-all duration-500 h-full flex items-center justify-center bg-slate-950/50"
                      style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)' }}>
-                  <img 
+                  <ZoomableImage 
                     src="/userflow.png" 
                     alt="BMC Town Conversation Flow - Proactive Suggestion Pipeline" 
-                    className="w-auto h-full max-h-[480px] object-contain transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full max-h-[480px]"
                   />
                   
                   {/* Gradient overlay */}

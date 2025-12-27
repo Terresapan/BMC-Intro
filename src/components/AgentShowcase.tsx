@@ -40,7 +40,16 @@ export const AgentShowcase: React.FC = () => {
         {/* Town Map */}
         <div className="relative max-w-5xl mx-auto mb-16">
           {/* Map Image */}
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20 group">
+            {/* Hover Instruction Popup */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+              <div className="bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl motion-safe:animate-float-slow">
+                <p className="font-pixel text-sm text-fuchsia-200 tracking-wide flex items-center gap-2 drop-shadow-md">
+                  <span className="animate-pulse text-fuchsia-400">⚡️</span>
+                  Click the experts to explore
+                </p>
+              </div>
+            </div>
             <img 
               src="/town-map.png" 
               alt="BMC Town Map - Click buildings to meet the AI agents"

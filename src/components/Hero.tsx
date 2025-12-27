@@ -59,9 +59,20 @@ export const Hero: React.FC = () => {
               href="https://bmc-ui-635390037922.us-central1.run.app/"
               target="_blank"
               rel="noopener noreferrer"
+              className="relative flex items-center gap-2"
             >
               Enter BMC Town
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              
+              {/* Admin Access Popup */}
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 bg-slate-900/95 border border-fuchsia-500/30 rounded-lg shadow-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none whitespace-nowrap z-50">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-fuchsia-300">
+                  <span className="text-fuchsia-400">⚡️</span>
+                  Admin Access: <span className="font-mono text-fuchsia-200">agentgarden</span>
+                </div>
+                {/* Arrow pointing down */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900/95 border-r border-b border-fuchsia-500/30 transform rotate-45"></div>
+              </div>
             </a>
           </Button>
           
