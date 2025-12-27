@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, Lightbulb, Loader2, MessageSquare, Zap } from 'lucide-react';
+import { Send, Sparkles, Lightbulb, Loader2, MessageSquare, Zap, RotateCcw } from 'lucide-react';
 import { GenerateContentResponse } from "@google/genai";
 import { streamChatResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
@@ -98,6 +98,18 @@ export const InteractiveDemo: React.FC = () => {
     handleSend(question);
   };
 
+  const handleReset = () => {
+    setMessages([
+      { 
+        role: 'model', 
+        text: "👋 Welcome to BMC Town! I'm here to answer your questions.\n\nBMC Town helps entrepreneurs build business strategies through nine AI experts and our unique Proactive Canvas Advisor.\n\nWhat would you like to know?" 
+      }
+    ]);
+    setInput('');
+    setShowSamples(true);
+    setLoading(false);
+  };
+
   return (
     <section className="relative overflow-hidden bg-brand-dark py-24" id="demo">
       
@@ -159,10 +171,20 @@ export const InteractiveDemo: React.FC = () => {
                       <p className="text-xs text-green-400">● Online</p>
                     </div>
                   </div>
-                  <span className="text-xs text-slate-500 bg-slate-800/50 px-3 py-1.5 border border-slate-700/50"
-                        style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
-                    Powered by Gemini
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={handleReset}
+                      className="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1.5 group/reset"
+                      title="Reset Conversation"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5 group-hover/reset:-rotate-180 transition-transform duration-500" />
+                      <span className="text-xs font-medium hidden sm:inline">Reset</span>
+                    </button>
+                    <span className="text-xs font-medium text-blue-300 bg-blue-500/10 px-3 py-1.5 border border-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]"
+                          style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
+                      Powered by Gemini
+                    </span>
+                  </div>
                 </div>
 
                 {/* Messages Area */}

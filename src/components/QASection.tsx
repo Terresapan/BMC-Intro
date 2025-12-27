@@ -71,6 +71,17 @@ export const QASection: React.FC = () => {
                         const trimmedLine = line.trim();
                         const isBullet = trimmedLine.startsWith('•');
                         
+                        // Function to parse **bold** text
+                        const renderFormattedText = (text: string) => {
+                          const parts = text.split(/(\*\*.*?\*\*)/g);
+                          return parts.map((part, index) => {
+                            if (part.startsWith('**') && part.endsWith('**')) {
+                              return <strong key={index} className="text-white font-bold">{part.slice(2, -2)}</strong>;
+                            }
+                            return part;
+                          });
+                        };
+
                         if (isBullet) {
                           return (
                             <div key={pIdx} className="flex gap-4 items-start pl-2 py-1">
@@ -78,7 +89,7 @@ export const QASection: React.FC = () => {
                                 <Circle className="w-2 h-2 fill-current shadow-[0_0_8px_rgba(217,70,239,0.8)]" />
                               </div>
                               <p className="opacity-90 flex-1">
-                                {trimmedLine.substring(1).trim()}
+                                {renderFormattedText(trimmedLine.substring(1).trim())}
                               </p>
                             </div>
                           );
@@ -86,7 +97,7 @@ export const QASection: React.FC = () => {
                         
                         return (
                           <p key={pIdx} className="opacity-90 mb-4 last:mb-0">
-                            {trimmedLine}
+                            {renderFormattedText(trimmedLine)}
                           </p>
                         );
                       })}

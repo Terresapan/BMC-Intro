@@ -6,7 +6,7 @@ import { X, MessageCircle } from 'lucide-react';
 
 // Position hints for where each agent's building is on the map (percentages)
 const AGENT_POSITIONS: Record<string, { top: string; left: string }> = {
-  "Key Partners": { top: "25%", left: "8%" },
+  "Key Partnerships": { top: "25%", left: "8%" },
   "Key Activities": { top: "45%", left: "12%" },
   "Key Resources": { top: "65%", left: "8%" },
   "Cost Structure": { top: "85%", left: "25%" },
@@ -33,7 +33,7 @@ export const AgentShowcase: React.FC = () => {
             Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400">Business Experts</span>
           </p>
           <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
-            Nine specialized AI agents, each mastering a different part of your business model—hover or click the buildings to meet them.
+            Nine specialized AI agents, each mastering a different part of your business model—hover or click the experts to meet them.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export const AgentShowcase: React.FC = () => {
             </div>
             <img 
               src="/town-map.png" 
-              alt="BMC Town Map - Click buildings to meet the AI agents"
+              alt="BMC Town Map - Click buildings to meet the AI experts"
               className="w-full h-auto"
             />
             
@@ -97,7 +97,7 @@ export const AgentShowcase: React.FC = () => {
 
           <div className="absolute -right-4 top-1/2 -translate-y-1/2 hidden lg:block">
             <div className="bg-slate-900/90 backdrop-blur-md rounded-xl border border-white/10 p-4 shadow-xl max-h-[500px] overflow-y-auto">
-              <p className="text-xs text-slate-500 uppercase tracking-widest mb-3 font-bold">All Agents</p>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-3 font-bold">All AI Experts</p>
               <div className="space-y-1">
                 {AGENTS.map((agent) => (
                   <button

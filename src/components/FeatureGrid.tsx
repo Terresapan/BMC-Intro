@@ -358,7 +358,7 @@ export const FeatureGrid: React.FC = () => {
                     </div>
                     
                     <p className="text-slate-200 text-lg leading-relaxed mb-6">
-                      <span className="font-bold text-white">TAP (The Acceleration Project)</span> is a nonprofit organization, serving 2,000+ under-resourced entrepreneurs, with a mission to unlock pathways to wealth creation and economic mobility by accelerating under-resourced small businesses through high-impact, customized support in strategy, operations, finance, and marketing.
+                      <span className="font-bold text-white">TAP (The Acceleration Project)</span> is a nonprofit organization, serving 10,000+ under-resourced entrepreneurs, with a mission to unlock pathways to wealth creation and economic mobility by accelerating under-resourced small businesses through high-impact, customized support in strategy, operations, finance, and marketing.
                     </p>
 
                     {/* Key metrics */}

@@ -59,7 +59,7 @@ export const AuthorSection: React.FC = () => {
                   alt="Terresa Pan - Stanford GSB Sloan Fellow and AI Strategist" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-brand-dark via-brand-dark/100 to-transparent">
                   <div className="flex items-center gap-2 text-fuchsia-400 mb-1">
                     <GraduationCap className="w-4 h-4" />
                     <span className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Stanford GSB Sloan Fellow</span>
@@ -69,7 +69,7 @@ export const AuthorSection: React.FC = () => {
               </div>
               
               {/* Achievement badges */}
-              <div className="absolute -right-6 top-8 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block motion-safe:animate-float-slow">
+              <div className="absolute -right-6 top-6 bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl hidden sm:block motion-safe:animate-float-slow">
                 <div className="flex items-center gap-3">
                   <div className="bg-fuchsia-500/20 p-2 rounded-lg text-fuchsia-400">
                     <Rocket className="w-5 h-5" />

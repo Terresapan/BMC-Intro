@@ -67,6 +67,7 @@ export const Footer: React.FC = () => {
 
   const quickLinks = [
     { name: "Enter BMC Town", href: "https://bmc-ui-635390037922.us-central1.run.app/" },
+    { name: "Features", href: "#features" },
     { name: "Meet the Experts", href: "#agents" },
     { name: "Ask BMC", href: "#demo" },
     { name: "The Manifesto", href: "#qa" },
