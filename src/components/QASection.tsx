@@ -18,11 +18,13 @@ export const QASection: React.FC = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-400 uppercase tracking-[0.2em] mb-4">Strategic Framework</h2>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white font-pixel leading-tight">
-            The Manifesto
+          <h2 className="text-base font-semibold text-indigo-300 uppercase tracking-widest mb-4">Strategic Framework</h2>
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white font-pixel leading-relaxed mb-6">
+            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400">Manifesto</span>
           </p>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-fuchsia-500 to-indigo-500 mx-auto mt-6 rounded-full"></div>
+          <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
+            Our core beliefs about democratizing strategy, human agency, and the future of AI-assisted entrepreneurship.
+          </p>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-4">

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-sans), system-ui, sans-serif;
-  --font-pixel: var(--font-press-start-2p), cursive;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-pixel: "Press Start 2P", cursive;
 
   --color-brand-dark: #0f0720;
   --color-brand-primary: #d946ef;
@@ -24,6 +24,15 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
   }
+}
+
+/* Font utility classes using next/font CSS variables */
+.font-sans {
+  font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+.font-pixel {
+  font-family: var(--font-press-start-2p), "Press Start 2P", cursive;
 }
 
 /* Custom scrollbar for chat */

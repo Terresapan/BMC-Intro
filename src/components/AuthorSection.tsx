@@ -4,7 +4,7 @@ import { GraduationCap, Briefcase, Rocket, Sparkles } from 'lucide-react';
 
 export const AuthorSection: React.FC = () => {
   return (
-    <section className="py-24 bg-brand-dark relative overflow-hidden border-t border-white/5" id="author">
+    <section className="py-24 bg-brand-dark relative overflow-hidden border-t border-white/5" id="bio">
       {/* Background visual flair */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-fuchsia-600/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -25,7 +25,7 @@ export const AuthorSection: React.FC = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent">
                   <div className="flex items-center gap-2 text-fuchsia-400 mb-1">
                     <GraduationCap className="w-4 h-4" />
-                    <span className="text-xs font-semibold uppercase tracking-widest">Stanford GSB Sloan Fellow</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Stanford GSB Sloan Fellow</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white">Terresa Pan</h3>
                 </div>
@@ -59,14 +59,17 @@ export const AuthorSection: React.FC = () => {
 
             {/* Content Column */}
             <div className="w-full lg:w-2/3">
-              <div className="inline-flex items-center gap-2 rounded-full bg-fuchsia-500/10 px-4 py-1.5 text-sm font-medium text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/20 mb-8 backdrop-blur-sm border border-fuchsia-500/10">
-                <Sparkles className="w-4 h-4" /> Meet the Architect
-              </div>
-              
-              <h2 className="text-4xl font-bold text-white mb-6 font-pixel leading-tight">
-                Strategist. Builder. <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-400">AI Orchestrator.</span>
+              <h2 className="text-base font-semibold text-indigo-300 uppercase tracking-widest mb-4">
+                <Sparkles className="w-4 h-4 inline-block mr-2" /> Meet the Architect
               </h2>
+              
+              <h3 className="text-2xl font-bold text-white mb-6 sm:text-3xl lg:text-4xl font-pixel leading-relaxed">
+                <span className="block">Strategist. Builder.</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400">AI Orchestrator.</span>
+              </h3>
+              
+              <p className="text-lg text-slate-300 font-light mb-6">
+              </p>
 
               <div className="space-y-6 text-slate-300 text-lg leading-relaxed font-light">
                 <p>
@@ -78,9 +81,9 @@ export const AuthorSection: React.FC = () => {
                 <p>
                   Terresa currently serves as a Senior Consultant at <span className="text-fuchsia-300 font-medium">The Acceleration Project (TAP)</span>, where she spearheads AI adoption initiatives for under-resourced small businesses. She designs and deploys custom AI agents that automate content creation, marketing, and operations, delivering up to <span className="text-white font-bold">200% time savings</span> and <span className="text-white font-bold">50%+ engagement boosts</span> for SMBs. 
                 </p>
-                <p className="border-l-2 border-fuchsia-500/30 pl-6 italic text-slate-400">
+                {/* <p className="border-l-2 border-fuchsia-500/30 pl-6 italic text-slate-400">
                   By replacing traditional consulting overhead with cutting-edge AI orchestration, Terresa is dedicated to democratizing strategic expertise and creating scalable pathways to economic mobility for diverse founders.
-                </p>
+                </p> */}
               </div>
             </div>
 

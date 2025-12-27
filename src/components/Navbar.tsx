@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { href: "#features", label: "Features" },
-  { href: "#agents", label: "The Experts" },
-  { href: "#demo", label: "Talk to Demo" },
-  { href: "#qa", label: "Vision" },
+  { href: "#agents", label: "Meet Experts" },
+  { href: "#demo", label: "Ask BMC" },
+  { href: "#bio", label: "Architect" },
+  { href: "#qa", label: "Manifesto" },
+  { href: "#architecture", label: "Tech Stack" },
 ];
 
 export const Navbar = () => {
@@ -49,7 +51,7 @@ export const Navbar = () => {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
             {navLinks.map((link) => (
               <a 
                 key={link.href}
@@ -62,7 +64,25 @@ export const Navbar = () => {
           </div>
           
           <div className="flex items-center gap-3">
-            {/* Desktop CTA */}
+            {/* Download Slides Button */}
+            <Button 
+              asChild
+              variant="glass"
+              size="sm"
+              className="hidden sm:inline-flex"
+            >
+              <a 
+                href="/BMC_Town_Democratizing_Strategy.pdf" 
+                download
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Download className="w-4 h-4 mr-1" />
+                Slides
+              </a>
+            </Button>
+            
+            {/* Cost Simulator Button */}
             <Button 
               asChild
               variant="navCta"
@@ -122,8 +142,26 @@ export const Navbar = () => {
             ))}
           </nav>
           
-          {/* Mobile CTA */}
-          <div className="mt-6">
+          {/* Mobile CTAs */}
+          <div className="mt-6 flex flex-col gap-3">
+            <Button 
+              asChild
+              variant="glass"
+              size="lg"
+              className="w-full"
+            >
+              <a 
+                href="/BMC_Town_Democratizing_Strategy.pdf" 
+                download
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download Slides
+              </a>
+            </Button>
+            
             <Button 
               asChild
               variant="gradient"

@@ -1,22 +1,33 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, User, Loader2 } from 'lucide-react';
+import { Send, Sparkles, Lightbulb, Loader2, MessageSquare, Zap } from 'lucide-react';
 import { GenerateContentResponse } from "@google/genai";
 import { streamChatResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
+// Sample questions for users to click
+const SAMPLE_QUESTIONS = [
+  "What makes BMC Town different?",
+  "How does the Canvas Advisor work?",
+  "Who are the 9 experts?",
+  "What is Shared Living Context?",
+];
+
 export const InteractiveDemo: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: "Welcome to Business Model Canvas Town! I'm the Town Greeter. Are you an entrepreneur, a student, or just passing through?" }
+    { 
+      role: 'model', 
+      text: "👋 Welcome to BMC Town! I'm here to answer your questions.\n\nBMC Town helps entrepreneurs build business strategies through nine AI experts and our unique Proactive Canvas Advisor.\n\nWhat would you like to know?" 
+    }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showSamples, setShowSamples] = useState(true);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Use scrollTop to scroll the container internally without jumping the whole page
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
@@ -27,19 +38,20 @@ export const InteractiveDemo: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!input.trim() || loading) return;
+  const handleSend = async (messageText?: string) => {
+    const textToSend = messageText || input;
+    if (!textToSend.trim() || loading) return;
 
-    const userMsg: ChatMessage = { role: 'user', text: input };
+    const userMsg: ChatMessage = { role: 'user', text: textToSend };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setLoading(true);
+    setShowSamples(false);
 
     try {
-      // Create a temporary model message for streaming
       setMessages(prev => [...prev, { role: 'model', text: '', isStreaming: true }]);
 
-      const streamResult = await streamChatResponse(userMsg.text, messages);
+      const streamResult = await streamChatResponse(textToSend, messages);
       
       let fullText = '';
       
@@ -58,7 +70,6 @@ export const InteractiveDemo: React.FC = () => {
         });
       }
 
-       // Finalize
        setMessages(prev => {
         const newHistory = [...prev];
         const lastMsg = newHistory[newHistory.length - 1];
@@ -70,7 +81,7 @@ export const InteractiveDemo: React.FC = () => {
 
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'model', text: "Sorry, the town is currently experiencing a communications blackout (API Error). Please try again later." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "Sorry, I'm having trouble connecting. Please make sure the Gemini API key is configured." }]);
     } finally {
       setLoading(false);
     }
@@ -83,122 +94,215 @@ export const InteractiveDemo: React.FC = () => {
     }
   };
 
+  const handleSampleClick = (question: string) => {
+    handleSend(question);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-brand-dark py-24 min-h-screen flex items-center" id="demo">
+    <section className="relative overflow-hidden bg-brand-dark py-24" id="demo">
       
-      {/* --- Background Effects (Echoing Hero Section) --- */}
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-fuchsia-900/20 via-brand-dark to-brand-dark"></div>
+      <div className="absolute inset-0 opacity-[0.08]" 
+           style={{
+             backgroundImage: `
+               linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
+             `,
+             backgroundSize: '30px 30px'
+           }}>
+      </div>
       
-      {/* 1. Base Radial Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-fuchsia-900 via-brand-dark to-brand-dark"></div>
+      <div className="absolute top-20 right-[15%] w-96 h-96 bg-purple-600/10 rounded-full blur-3xl motion-safe:animate-blob pointer-events-none"></div>
+      <div className="absolute bottom-20 left-[15%] w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-2000 pointer-events-none"></div>
 
-      {/* 2. Subtle Noise Texture Overlay */}
-      <div className="absolute inset-0 opacity-[0.12] mix-blend-overlay pointer-events-none" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"}}></div>
-      
-      {/* 3. Glowing Animated Blobs (reduced to 2) */}
-      <div className="absolute top-10 right-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-3xl motion-safe:animate-blob pointer-events-none"></div>
-      <div className="absolute bottom-10 left-[10%] w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl motion-safe:animate-blob animation-delay-2000 pointer-events-none"></div>
-
-      {/* Floating Particles (reduced to 2) */}
-      <div className="absolute top-1/4 right-20 w-3 h-3 bg-fuchsia-400/20 rounded-full motion-safe:animate-float-slow pointer-events-none"></div>
-      <div className="absolute bottom-1/3 left-32 w-4 h-4 bg-indigo-400/20 rounded-full motion-safe:animate-float-medium pointer-events-none"></div>
-
-      {/* --- Content --- */}
-      
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-base font-semibold text-indigo-300 uppercase tracking-widest mb-4">Interactive Demo</h2>
           
-          {/* Left Column: Text */}
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20 mb-6 backdrop-blur-sm border border-indigo-500/10">
-              <Sparkles className="w-3 h-3" /> Live Demo
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6 drop-shadow-lg font-pixel leading-tight">
-              Talk to <br/>the Town
-            </h2>
-            <p className="text-lg text-slate-300 mb-8 drop-shadow-md font-light">
-              Experience the power of our conversational agents. Ask the Greeter about the different districts, or describe a business problem you have.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 bg-slate-800/40 backdrop-blur-md rounded-lg border border-slate-700/50 hover:bg-slate-800/60 transition-colors">
-                <div className="bg-fuchsia-500/20 p-2 rounded-lg text-fuchsia-400">
-                  <Sparkles className="w-5 h-5" />
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 font-pixel leading-relaxed">
+            <span className="block">Learn About</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400">BMC Town</span>
+          </p>
+          
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Ask me anything about our <span className="text-fuchsia-400 font-semibold">Proactive Canvas Advisor</span>, the <span className="text-purple-400 font-semibold">9 Business Experts</span>, or how BMC Town works!
+          </p>
+        </div>
+
+        {/* Main Content - Chat First Layout */}
+        <div className="max-w-5xl mx-auto">
+          
+          {/* Chat Interface - Full Width, Taller */}
+          <div className="mb-12">
+            <div className="relative group">
+              {/* Pixelated glow border */}
+              <div className="absolute -inset-[3px] bg-gradient-to-br from-fuchsia-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
+              
+              <div className="relative bg-slate-950/90 backdrop-blur-xl border-2 border-white/10 overflow-hidden flex flex-col h-[750px] shadow-2xl"
+                   style={{ clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))' }}>
+                
+                {/* Chat Header */}
+                <div className="p-5 border-b-2 border-white/10 bg-gradient-to-r from-fuchsia-500/10 to-purple-500/10 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="relative">
+                      <div className="w-10 h-10 bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center"
+                           style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                        <Sparkles className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-950 motion-safe:animate-pulse"></span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-white font-pixel text-sm">BMC Town Guide</span>
+                      <p className="text-xs text-green-400">● Online</p>
+                    </div>
+                  </div>
+                  <span className="text-xs text-slate-500 bg-slate-800/50 px-3 py-1.5 border border-slate-700/50"
+                        style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
+                    Powered by Gemini
+                  </span>
                 </div>
-                <div>
-                  <h4 className="text-white font-medium">Context Aware</h4>
-                  <p className="text-sm text-slate-400 mt-1">Agents remember who you are and adapt to your specific business niche.</p>
+
+                {/* Messages Area */}
+                <div 
+                  className="flex-1 overflow-y-auto p-6 space-y-5 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent"
+                  ref={chatContainerRef}
+                >
+                  {messages.map((msg, index) => (
+                    <div 
+                      key={index} 
+                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      {msg.role === 'model' && (
+                        <div className="flex-shrink-0 mr-3 mt-1">
+                          <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center"
+                               style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                            <Sparkles className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className={`max-w-[80%] relative ${
+                        msg.role === 'user' 
+                          ? 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-purple-900/30 p-4' 
+                          : 'bg-slate-800/70 text-slate-200 border-2 border-slate-700/50 shadow-md p-4'
+                      }`}
+                      style={{ 
+                        clipPath: msg.role === 'user' 
+                          ? 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)' 
+                          : 'polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px))'
+                      }}>
+                        <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.text}</p>
+                        {msg.isStreaming && (
+                          <span className="inline-block w-2 h-4 ml-1 bg-slate-400 align-middle"
+                                style={{ 
+                                  clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                                  animation: 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                                }}>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Sample Questions */}
+                  {showSamples && messages.length === 1 && (
+                    <div className="mt-6 space-y-3">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Lightbulb className="w-4 h-4 text-yellow-400" />
+                        <p className="text-sm text-slate-400 font-pixel">Quick Start:</p>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {SAMPLE_QUESTIONS.map((question, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleSampleClick(question)}
+                            className="group relative text-left px-4 py-3 bg-white/5 hover:bg-fuchsia-500/20 border-2 border-white/10 hover:border-fuchsia-500/50 text-sm text-slate-300 hover:text-white transition-all duration-300"
+                            style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
+                          >
+                            <span className="relative z-10">{question}</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/0 to-purple-500/0 group-hover:from-fuchsia-500/10 group-hover:to-purple-500/10 transition-all duration-300"></div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 bg-slate-800/40 backdrop-blur-md rounded-lg border border-slate-700/50 hover:bg-slate-800/60 transition-colors">
-                <div className="bg-indigo-500/20 p-2 rounded-lg text-indigo-400">
-                  <User className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-white font-medium">Distinct Personalities</h4>
-                  <p className="text-sm text-slate-400 mt-1">From "Steven Segments" to "Carlos Costs", every interaction is unique.</p>
+
+                {/* Input Area */}
+                <div className="p-5 border-t-2 border-white/10 bg-slate-900/70">
+                  <div className="flex gap-3">
+                    <label htmlFor="chat-input" className="sr-only">Ask a question about BMC Town</label>
+                    <div className="flex-1 relative">
+                      <Input
+                        id="chat-input"
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Ask about BMC Town..."
+                        disabled={loading}
+                        className="bg-slate-800/80 text-white border-2 border-white/20 focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:border-purple-500 placeholder:text-slate-500 h-12 text-base"
+                      />
+                    </div>
+                    <Button 
+                      onClick={() => handleSend()}
+                      disabled={loading || !input.trim()}
+                      size="icon"
+                      aria-label="Send message"
+                      className="h-12 w-12 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 disabled:opacity-50 shadow-lg"
+                      style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))' }}
+                    >
+                      {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Chat Interface */}
-          <div className="bg-slate-950/70 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col h-[500px] ring-1 ring-white/5">
-            {/* Chat Header */}
-            <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-red-500 shadow-sm"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500 shadow-sm"></div>
-              </div>
-              <span className="text-xs font-mono text-slate-400">Town_Greeter_v1.2.exe</span>
-            </div>
-
-            {/* Messages Area */}
-            <div 
-              className="flex-1 overflow-y-auto p-6 space-y-4 font-mono text-sm scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent"
-              ref={chatContainerRef}
-            >
-              {messages.map((msg, index) => (
-                <div 
-                  key={index} 
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[85%] rounded-lg p-3 ${
-                    msg.role === 'user' 
-                      ? 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-purple-900/20' 
-                      : 'bg-slate-800/80 text-slate-200 border border-slate-700 shadow-sm'
-                  }`}>
-                    <p className="whitespace-pre-wrap">{msg.text}</p>
-                    {msg.isStreaming && <span className="inline-block w-2 h-4 ml-1 bg-slate-400 animate-pulse align-middle"></span>}
+          {/* Bottom Info Cards - Compact */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Left Card - Proactive Feature */}
+            <div className="group relative overflow-hidden bg-gradient-to-br from-fuchsia-500/10 to-purple-500/10 border-2 border-fuchsia-500/30 p-6 hover:border-fuchsia-500/60 transition-all duration-300"
+                 style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)' }}>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center"
+                       style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                    <Zap className="w-6 h-6 text-white" />
                   </div>
                 </div>
-              ))}
+                <div>
+                  <h4 className="text-white font-bold text-lg mb-2 font-pixel text-sm">Proactive Insights</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed mb-3">
+                    Our Canvas Advisor surfaces connections you'd never think to ask about—marked with <span className="text-fuchsia-400 font-mono text-xs bg-fuchsia-500/20 px-2 py-0.5">[SYS]</span>
+                  </p>
+                  <p className="text-xs text-slate-400 italic">
+                    "Your enterprise focus suggests dedicated account management..."
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Input Area */}
-            <div className="p-4 border-t border-white/10 bg-slate-900/50">
-              <div className="relative flex gap-2">
-                <label htmlFor="chat-input" className="sr-only">Type your message to the Town Greeter</label>
-                <Input
-                  id="chat-input"
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Say hello to the greeter..."
-                  disabled={loading}
-                  className="bg-slate-800/50 text-white border-white/10 focus-visible:ring-purple-500 placeholder:text-slate-500"
-                />
-                <Button 
-                  onClick={handleSend}
-                  disabled={loading || !input.trim()}
-                  size="icon"
-                  aria-label="Send message"
-                >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                </Button>
-              </div>
-              <div className="text-center mt-2">
-                <span className="text-[10px] text-slate-500 uppercase tracking-widest">Powered by Gemini 2.5 Flash</span>
+            {/* Right Card - Memory */}
+            <div className="group relative overflow-hidden bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border-2 border-purple-500/30 p-6 hover:border-purple-500/60 transition-all duration-300"
+                 style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)' }}>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center"
+                       style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                    <Sparkles className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-white font-bold text-lg mb-2 font-pixel text-sm">Shared Memory</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    All nine experts remember your progress and build on previous conversations—creating a coherent learning experience.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

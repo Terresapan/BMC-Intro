@@ -1,30 +1,30 @@
 
 import { GoogleGenAI } from "@google/genai";
+import { CHATBOT_SYSTEM_INSTRUCTION } from "./bmcKnowledge";
 
+// Get API key from environment variable
+// For Next.js, create a .env.local file with NEXT_PUBLIC_GEMINI_API_KEY=your_key
 const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 
-const SYSTEM_INSTRUCTION = `
-You are the "Town Greeter" of Business Model Canvas Town. 
-Your job is to welcome visitors (potential users of the software) and explain what this platform is.
-The platform is a gamified RPG where users build business models by talking to AI agents.
-Keep your tone helpful, slightly whimsical (it's a pixel art town), but professional enough for business strategists.
-Encourage them to ask about the 9 experts (like Steven Segments or Victor Value) or how the "Multimodal Intelligence" works.
-Keep responses concise (under 3 sentences usually).
-`;
-
+/**
+ * Stream chat response from Gemini API
+ * Uses the BMC Knowledge Base as system instruction for context caching
+ */
 export const streamChatResponse = async (
   message: string,
   history: { role: 'user' | 'model'; text: string }[]
 ) => {
   if (!apiKey) {
-    throw new Error("API Key not found");
+    throw new Error("Gemini API Key not found. Please set NEXT_PUBLIC_GEMINI_API_KEY in your .env.local file.");
   }
 
   const chat = ai.chats.create({
-    model: 'gemini-2.5-flash-lite',
+    model: 'gemini-2.5-flash',
     config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
+      // The BMC Knowledge Base is placed at the start of the system instruction
+      // to enable context caching for better performance and lower costs
+      systemInstruction: CHATBOT_SYSTEM_INSTRUCTION,
       temperature: 0.7,
     },
     history: history.map(h => ({
