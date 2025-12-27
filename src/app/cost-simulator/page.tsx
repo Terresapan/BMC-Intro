@@ -36,7 +36,7 @@ export default function CostSimulatorPage() {
     const [wallTime, setWallTime] = useState<number>(5.0);
     const [vcpu, setVcpu] = useState<number>(1.0);
     const [mem, setMem] = useState<number>(1.0);
-    const [embedTokens, setEmbedTokens] = useState<number>(0);
+    const [embedTokens] = useState<number>(0);
     const [searchesPerUserDay, setSearchesPerUserDay] = useState<number>(1);
 
     // --- State: Proactive Agent Architecture ---
@@ -91,8 +91,7 @@ export default function CostSimulatorPage() {
 
         // 6. Evaluation Cost (LLM-as-a-Judge)
         const evalTraces = enableEval ? tracesPerMonth * evalSampleRate : 0;
-        const evalMp = MODEL_PRICING["gemini-2.5-flash"]; // Evaluation uses Flash model
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const evalMp = MODEL_PRICING["gemini-2.5-flash"]; // Evaluation uses Flash model 
         const evalCost = enableEval 
             ? (evalTraces * EVAL_TOKENS_PER_RUN / 1e6) * (evalMp.input + evalMp.output) / 2
             : 0;
@@ -265,7 +264,7 @@ export default function CostSimulatorPage() {
                                         onChange={(e) => setSelectedModel(e.target.value)}
                                         className="w-full p-3 pl-4 bg-slate-900 border border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-fuchsia-500 outline-none font-semibold text-slate-200 appearance-none transition-shadow hover:border-slate-600 cursor-pointer"
                                     >
-                                        {Object.entries(MODEL_PRICING).map(([key, val]: [string, any]) => (
+                                        {Object.entries(MODEL_PRICING).map(([key, val]) => (
                                             <option key={key} value={key} className="bg-slate-900">{val.label}</option>
                                         ))}
                                     </select>

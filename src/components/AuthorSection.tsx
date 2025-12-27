@@ -1,43 +1,7 @@
-
 import React from 'react';
-import { GraduationCap, Briefcase, Rocket, Sparkles, Globe, Mic, ExternalLink } from 'lucide-react';
-
-const GithubIcon = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
+import Image from 'next/image';
+import { GraduationCap, Briefcase, Rocket, Sparkles, Globe, Mic } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './Icons';
 
 export const AuthorSection: React.FC = () => {
   return (
@@ -54,10 +18,12 @@ export const AuthorSection: React.FC = () => {
             <div className="relative group w-full lg:w-1/3 max-w-sm">
               <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative bg-brand-dark rounded-2xl overflow-hidden border border-white/10 aspect-[3/4] shadow-2xl">
-                <img 
+                <Image 
                   src="/mm.jpg" 
-                  alt="Terresa Pan - Stanford GSB Sloan Fellow and AI Strategist" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  alt="Terresa Pan - Stanford GSB Sloan Fellow and AI Strategist"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-brand-dark via-brand-dark/100 to-transparent">
                   <div className="flex items-center gap-2 text-fuchsia-400 mb-1">
@@ -130,16 +96,16 @@ export const AuthorSection: React.FC = () => {
                 <span className="block">Strategist. Builder.</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400">AI Orchestrator.</span>
               </h3>
-              
-              <p className="text-lg text-slate-300 font-light mb-6">
-              </p>
+                            <p className="text-lg text-slate-300 italic mb-6 border-l-4 border-fuchsia-500 pl-4 bg-white/5 p-4 rounded-r-lg">
+                    &quot;We&apos;re not just building a tool; we&apos;re building a bridge. Every entrepreneur deserves the strategy they need to succeed, regardless of their zip code or budget.&quot; 
+                  </p>
 
               <div className="space-y-6 text-slate-300 text-lg leading-relaxed font-light">
                 <p>
                   Terresa Pan is a <span className="text-white font-semibold underline decoration-fuchsia-500/50 decoration-2 underline-offset-4">Stanford Graduate School of Business alumna (Sloan Fellow)</span> and a strategic leader specializing in turning AI into a practical engine for business growth. With a deep entrepreneurial foundation as a startup Founder and CEO, she understands the high-stakes reality of building a business from the ground up.
                 </p>
                 <p>
-                  As a Managing Partner at <span className="text-indigo-300 font-medium">TZG Partners</span>—an early-stage venture accelerator with VC capacity—Terresa has a proven track record of building, investing in, and scaling companies. She combines this "builder" mindset with technical foresight to help organizations navigate the rapidly evolving AI landscape.
+                  As a Managing Partner at <span className="text-indigo-300 font-medium">TZG Partners</span>—an early-stage venture accelerator with VC capacity—Terresa has a proven track record of building, investing in, and scaling companies. She combines this &quot;builder&quot; mindset with technical foresight to help organizations navigate the rapidly evolving AI landscape.
                 </p>
                 <p>
                   Terresa currently serves as a Senior Consultant at <span className="text-fuchsia-300 font-medium">The Acceleration Project (TAP)</span>, where she spearheads AI adoption initiatives for under-resourced small businesses. She designs and deploys custom AI agents that automate content creation, marketing, and operations, delivering up to <span className="text-white font-bold">200% time savings</span> and <span className="text-white font-bold">50%+ engagement boosts</span> for SMBs. 

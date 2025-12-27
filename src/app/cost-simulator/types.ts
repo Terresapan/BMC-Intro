@@ -4,9 +4,7 @@ export interface ModelPricing {
   label: string;
 }
 
-export interface PricingMap {
-  [key: string]: ModelPricing;
-}
+export type PricingMap = Record<string, ModelPricing>;
 
 export interface CalculationStats {
   tracesPerMonth: number;
@@ -28,12 +26,10 @@ export interface CalculationStats {
 export interface SensitivityPoint {
   users: number;
   cost: number;
-  [key: string]: any;
 }
 
 export interface PieDataPoint {
   name: string;
   value: number;
   color: string;
-  [key: string]: any;
 }

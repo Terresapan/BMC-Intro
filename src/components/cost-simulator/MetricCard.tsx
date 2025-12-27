@@ -1,8 +1,4 @@
 import React from 'react';
-import { cn } from '@/lib/utils'; // Assuming cn utility exists, usually common in Next.js + Tailwind setups, if not I'll just use template literals or class-variance-authority if available. 
-// However, I didn't verify lib/utils existence. I'll stick to safe template literals to be sure, or check directory first.
-// Checking file listing earlier: src/lib exists. I will assume it has utils or similar. 
-// Safest is to stick to class string interpolation like original to avoid import errors if utils.ts isn't standard.
 
 type ColorVariant = "blue" | "indigo" | "emerald" | "amber" | "purple" | "teal" | "fuchsia";
 

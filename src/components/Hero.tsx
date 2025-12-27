@@ -35,16 +35,15 @@ export const Hero: React.FC = () => {
           <span className="motion-safe:animate-pulse text-fuchsia-400">✨</span> 
           <span className="text-fuchsia-200">Stanford Create+AI Challenge 2026</span>
         </div>
-        
         <h1 className="mx-auto max-w-6xl font-pixel text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl mb-8 drop-shadow-2xl leading-tight">
           Expert-Level Strategy Guidance,{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400 filter drop-shadow-lg">
             Now Accessible to Everyone
-          </span>
-        </h1>
+            </span>
+          </h1>
         
         <p className="mx-auto max-w-3xl text-lg lg:text-xl leading-8 text-slate-300 mb-10 drop-shadow-md font-light">
-          Our AI agents don't just answer questions — they <strong className="text-white">surface strategic connections</strong> you'd never think to ask about, 
+          Our AI agents don&apos;t just answer questions — they <strong className="text-white">surface strategic connections</strong> you&apos;d never think to ask about, 
           then <strong className="text-white">let you decide</strong> what fits your business.
         </p>
         

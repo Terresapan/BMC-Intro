@@ -1,12 +1,6 @@
 
-import { Agent, QAItem } from './types';
+import { Agent, QAItem, Feature, Persona } from './types';
 import { 
-  Map, 
-  Users, 
-  Brain, 
-  FileText, 
-  ShieldCheck, 
-  Cpu,
   Info,
   AlertTriangle,
   Zap,
@@ -15,10 +9,77 @@ import {
   Scale,
   Flag,
   Wallet,
-  Globe,
-  Database,
-  History
+  Lightbulb,
+  Brain,
+  Gamepad2,
+  Sparkles,
+  Users,
+  FileDown
 } from 'lucide-react';
+
+export const FEATURES: Feature[] = [
+  {
+    title: "Insights You&apos;d Never Ask For",
+    description: "The Canvas Advisor proactively surfaces cross-block connections — like a real consultant connecting the dots across your entire business model.",
+    icon: Lightbulb,
+    color: "from-fuchsia-500 to-purple-600",
+    highlight: true
+  },
+  {
+    title: "It Remembers Everything",
+    description: "Pick up where you left off. Our 'Shared Living Context' means all nine experts remember your progress and build on previous conversations.",
+    icon: Brain,
+    color: "from-purple-500 to-indigo-600"
+  },
+  {
+    title: "Learning Through Play",
+    description: "A Phaser 3 pixel-art RPG world transforms strategy planning into an engaging adventure — reducing cognitive load and increasing retention.",
+    icon: Gamepad2,
+    color: "from-indigo-500 to-blue-600"
+  },
+  {
+    title: "Trained on Your Business",
+    description: "Upload PDFs, images, or notes. Gemini multimodal AI grounds every response in YOUR specific business data — not generic templates.",
+    icon: Sparkles,
+    color: "from-blue-500 to-cyan-600"
+  },
+  {
+    title: "You&apos;re Always in Control",
+    description: "Proactive suggestions are staged [SYS], not auto-applied. You confirm or dismiss each insight — the AI advises, never decides.",
+    icon: Users,
+    color: "from-cyan-500 to-teal-600"
+  },
+  {
+    title: "One-Click Strategy Export",
+    description: "Download a professional PDF of your complete Business Model Canvas, automatically populated with strategic points from your sessions.",
+    icon: FileDown,
+    color: "from-teal-500 to-green-600"
+  }
+];
+
+export const PERSONAS: Persona[] = [
+  {
+    title: "The First-Time Founder",
+    description: "From idea to investor-ready in weeks, not months.",
+    stat: "90%",
+    statLabel: "Woman-Owned",
+    color: "border-fuchsia-500/30 hover:border-fuchsia-500"
+  },
+  {
+    title: "The Bootstrapped Team",
+    description: "No budget for $500/hr consultants? We've got you covered.",
+    stat: "60%",
+    statLabel: "Black-Owned",
+    color: "border-purple-500/30 hover:border-purple-500"
+  },
+  {
+    title: "The Nonprofit Accelerator",
+    description: "Scale your impact with AI-assisted coaching for your cohorts.",
+    stat: "24/7",
+    statLabel: "Available",
+    color: "border-indigo-500/30 hover:border-indigo-500"
+  }
+];
 
 export const AGENTS: Agent[] = [
   {
@@ -83,40 +144,6 @@ export const AGENTS: Agent[] = [
     description: "Pragmatic financial analyst. Detailed breakdown of expenses.",
     icon: "📉",
     color: "bg-gray-500/10 text-gray-300 ring-1 ring-gray-500/20"
-  }
-];
-
-
-export const FEATURES = [
-  {
-    title: "Proactive Advisor",
-    description: "Our 'Canvas Advisor' automatically surfaces cross-canvas insights, mimicking a real consultant connecting the dots.",
-    icon: Brain
-  },
-  {
-    title: "Living Context",
-    description: "Memory extraction workflows ensure all nine experts 'remember' and build upon your progress across sessions.",
-    icon: History
-  },
-  {
-    title: "Multimodal AI",
-    description: "Gemini-powered processing of text, PDFs, and images for a seamless strategic planning experience.",
-    icon: Globe
-  },
-  {
-    title: "Expert Consultants",
-    description: "Nine specialized AI agents representing every building block of the Business Model Canvas.",
-    icon: Users
-  },
-  {
-    title: "Secure Strategy",
-    description: "Token-based auth and strict data isolation ensure your strategy remains confidential and personal.",
-    icon: ShieldCheck
-  },
-  {
-    title: "Modern Synthesis",
-    description: "Real-time progress previews and professional PDF exports for immediate action and sharing.",
-    icon: FileText
   }
 ];
 

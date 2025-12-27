@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, Lightbulb, Loader2, MessageSquare, Zap, RotateCcw } from 'lucide-react';
+import { Send, Sparkles, Lightbulb, Loader2, Zap, RotateCcw } from 'lucide-react';
 import { GenerateContentResponse } from "@google/genai";
 import { streamChatResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
@@ -300,11 +300,13 @@ export const InteractiveDemo: React.FC = () => {
                 <div>
                   <h4 className="text-white font-bold text-lg mb-2 font-pixel text-sm">Proactive Insights</h4>
                   <p className="text-sm text-slate-300 leading-relaxed mb-3">
-                    Our Canvas Advisor surfaces connections you'd never think to ask about—marked with <span className="text-fuchsia-400 font-mono text-xs bg-fuchsia-500/20 px-2 py-0.5">[SYS]</span>
+                    Our Canvas Advisor surfaces connections you&apos;d never think to ask about—marked with <span className="text-fuchsia-400 font-mono text-xs bg-fuchsia-500/20 px-2 py-0.5">[SYS]</span>
                   </p>
-                  <p className="text-xs text-slate-400 italic">
-                    "Your enterprise focus suggests dedicated account management..."
-                  </p>
+                      <div className="flex-1">
+                        <p className="text-slate-300 italic">
+                          &quot;That&apos;s a great start! Based on your target audience of early-stage founders, have you considered how your pricing strategy might affect adoption?&quot;
+                        </p>
+                      </div>
                 </div>
               </div>
             </div>

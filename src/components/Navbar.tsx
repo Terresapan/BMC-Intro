@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
@@ -46,9 +47,9 @@ export const Navbar = () => {
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-dark/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <a href="/" className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
+          <Link href="/" className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
             <span className="text-2xl">🏘️</span> BMC TOWN
-          </a>
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
@@ -89,11 +90,11 @@ export const Navbar = () => {
               size="sm"
               className="hidden sm:inline-flex"
             >
-              <a 
+              <Link 
                 href="/cost-simulator"
               >
                 Cost Simulator
-              </a>
+              </Link>
             </Button>
             
             {/* Mobile Menu Toggle */}
@@ -166,12 +167,12 @@ export const Navbar = () => {
               size="lg"
               className="w-full"
             >
-              <a 
+              <Link 
                 href="/cost-simulator"
                 onClick={handleLinkClick}
               >
                 Cost Simulator
-              </a>
+              </Link>
             </Button>
           </div>
           

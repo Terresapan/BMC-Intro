@@ -12,13 +12,17 @@ export interface Agent {
 export interface Feature {
   title: string;
   description: string;
-  icon: React.ComponentType<any>;
+  icon: React.ElementType;
+  color: string;
+  highlight?: boolean;
 }
 
 export interface Persona {
   title: string;
   description: string;
-  needs: string;
+  stat: string;
+  statLabel: string;
+  color: string;
 }
 
 export interface ChatMessage {
@@ -30,5 +34,5 @@ export interface ChatMessage {
 export interface QAItem {
   question: string;
   answer: string;
-  icon: React.ComponentType<any>;
+  icon: React.ElementType;
 }

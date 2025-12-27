@@ -1,69 +1,7 @@
 import React from 'react';
-import { Lightbulb, Brain, Gamepad2, FileDown, Users, Sparkles, ExternalLink } from 'lucide-react';
-
-const FEATURES = [
-  {
-    title: "Insights You'd Never Ask For",
-    description: "The Canvas Advisor proactively surfaces cross-block connections — like a real consultant connecting the dots across your entire business model.",
-    icon: Lightbulb,
-    color: "from-fuchsia-500 to-purple-600",
-    highlight: true
-  },
-  {
-    title: "It Remembers Everything",
-    description: "Pick up where you left off. Our 'Shared Living Context' means all nine experts remember your progress and build on previous conversations.",
-    icon: Brain,
-    color: "from-purple-500 to-indigo-600"
-  },
-  {
-    title: "Learning Through Play",
-    description: "A Phaser 3 pixel-art RPG world transforms strategy planning into an engaging adventure — reducing cognitive load and increasing retention.",
-    icon: Gamepad2,
-    color: "from-indigo-500 to-blue-600"
-  },
-  {
-    title: "Trained on Your Business",
-    description: "Upload PDFs, images, or notes. Gemini multimodal AI grounds every response in YOUR specific business data — not generic templates.",
-    icon: Sparkles,
-    color: "from-blue-500 to-cyan-600"
-  },
-  {
-    title: "You're Always in Control",
-    description: "Proactive suggestions are staged [SYS], not auto-applied. You confirm or dismiss each insight — the AI advises, never decides.",
-    icon: Users,
-    color: "from-cyan-500 to-teal-600"
-  },
-  {
-    title: "One-Click Strategy Export",
-    description: "Download a professional PDF of your complete Business Model Canvas, automatically populated with strategic points from your sessions.",
-    icon: FileDown,
-    color: "from-teal-500 to-green-600"
-  }
-];
-
-const PERSONAS = [
-  {
-    title: "The First-Time Founder",
-    description: "From idea to investor-ready in weeks, not months.",
-    stat: "90%",
-    statLabel: "Woman-Owned",
-    color: "border-fuchsia-500/30 hover:border-fuchsia-500"
-  },
-  {
-    title: "The Bootstrapped Team",
-    description: "No budget for $500/hr consultants? We've got you covered.",
-    stat: "60%",
-    statLabel: "Black-Owned",
-    color: "border-purple-500/30 hover:border-purple-500"
-  },
-  {
-    title: "The Nonprofit Accelerator",
-    description: "Scale your impact with AI-assisted coaching for your cohorts.",
-    stat: "24/7",
-    statLabel: "Available",
-    color: "border-indigo-500/30 hover:border-indigo-500"
-  }
-];
+import Image from 'next/image';
+import { Lightbulb, ExternalLink } from 'lucide-react';
+import { FEATURES, PERSONAS } from '../constants';
 
 export const FeatureGrid: React.FC = () => {
   return (
@@ -138,7 +76,7 @@ export const FeatureGrid: React.FC = () => {
                     
                     <div className="flex-1">
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 font-pixel leading-relaxed group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-purple-400 transition-all">
-                        Insights You'd Never Ask For
+                        Insights You&apos;d Never Ask For
                       </h3>
                       <p className="text-slate-300 text-lg leading-relaxed">
                         The Canvas Advisor proactively surfaces cross-block connections — like a real consultant connecting the dots across your entire business model.
@@ -246,7 +184,7 @@ export const FeatureGrid: React.FC = () => {
               Built for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">TAP Community</span>
             </p>
             <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Designed for under-resourced entrepreneurs who've been excluded from expensive consulting—bringing world-class strategy to everyone.
+              Designed for under-resourced entrepreneurs who&apos;ve been excluded from expensive consulting—bringing world-class strategy to everyone.
             </p>
           </div>
           
@@ -319,10 +257,12 @@ export const FeatureGrid: React.FC = () => {
                     >
                       <div className="relative w-24 h-24 bg-white/95 flex items-center justify-center shadow-2xl border-2 border-fuchsia-500/30 group-hover/logo:border-fuchsia-500/60 transition-all duration-500 group-hover/logo:scale-105"
                            style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
-                        <img 
+                        <Image // Replaced img with Image
                           src="/TAP.jpg" 
                           alt="The Acceleration Project Logo" 
-                          className="w-16 h-16 object-contain"
+                          className="object-contain"
+                          width={64} // Fixed width
+                          height={64} // Fixed height
                         />
                         
                         {/* Clickable hint */}

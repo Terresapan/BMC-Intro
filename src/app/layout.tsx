@@ -14,6 +14,7 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bmc-ui-635390037922.us-central1.run.app"),
   title: "Business Model Canvas Town | AI-Powered Strategy Platform",
   description: "Transform business strategy into an adventure. Join BMC Town where AI agents like Steven Segments and Victor Value help you build robust business models in an immersive pixel-art world.",
   keywords: ["business model canvas", "AI strategy", "startup tools", "business planning", "gamified learning", "AI agents"],

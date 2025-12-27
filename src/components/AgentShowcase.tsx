@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { AGENTS } from '../constants';
 import { X, MessageCircle } from 'lucide-react';
 
@@ -50,9 +51,11 @@ export const AgentShowcase: React.FC = () => {
                 </p>
               </div>
             </div>
-            <img 
+            <Image 
               src="/town-map.png" 
               alt="BMC Town Map - Click buildings to meet the AI experts"
+              width={1200} // Added width
+              height={675} // Added height
               className="w-full h-auto"
             />
             
@@ -177,8 +180,8 @@ export const AgentShowcase: React.FC = () => {
                   <div>
                     <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Sample Conversation</p>
                     <p className="text-sm text-slate-300 italic">
-                      "Let me help you think through your {selectedAgent.role.toLowerCase()}. 
-                      What makes your approach different from competitors?"
+                      &quot;Let me help you think through your {selectedAgent.role.toLowerCase()}. 
+                      What makes your approach different from competitors?&quot;
                     </p>
                   </div>
                 </div>

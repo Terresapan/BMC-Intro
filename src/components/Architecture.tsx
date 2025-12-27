@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import { Database, Layout, Search, GitBranch, Workflow, Zap, ZoomIn } from 'lucide-react';
 
 interface ZoomableImageProps {
@@ -60,11 +61,13 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) =>
       onMouseUp={handleMouseUp}
       onMouseLeave={() => setIsDragging(false)}
     >
-      <img 
+      <Image 
         src={src} 
         alt={alt} 
+        fill
         draggable={false}
-        className="w-full h-full object-contain transition-transform duration-500 ease-in-out origin-center select-none"
+        className="object-contain transition-transform duration-500 ease-in-out origin-center select-none"
+        sizes="(max-width: 768px) 100vw, 80vw"
         style={{ 
           transform: `translate(${position.x}px, ${position.y}px) scale(${isZoomed ? ZOOM_LEVEL : 1})` 
         }}
@@ -132,9 +135,11 @@ export const Architecture: React.FC = () => {
               
               <div className="relative overflow-hidden border-2 border-fuchsia-500/20 group-hover:border-fuchsia-500/40 transition-all duration-500 shadow-2xl"
                    style={{ clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)' }}>
-                <img 
+                <Image
                   src="/teckstack.png" 
-                  alt="BMC Town Multi-Agent Architecture - LangGraph Workflow" 
+                  alt="BMC Town Multi-Agent Architecture - LangGraph Workflow"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 
