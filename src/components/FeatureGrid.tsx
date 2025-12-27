@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lightbulb, Brain, Gamepad2, FileDown, Users, Sparkles } from 'lucide-react';
+import { Lightbulb, Brain, Gamepad2, FileDown, Users, Sparkles, ExternalLink } from 'lucide-react';
 
 const FEATURES = [
   {
@@ -250,7 +250,7 @@ export const FeatureGrid: React.FC = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
             {PERSONAS.map((persona, idx) => (
               <div 
                 key={persona.title}
@@ -288,6 +288,105 @@ export const FeatureGrid: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* TAP Mission Statement */}
+          <div className="max-w-5xl mx-auto">
+            <div className="group relative cursor-default">
+              {/* Outer glow */}
+              <div className="absolute -inset-[3px] bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 opacity-20 group-hover:opacity-25 blur-xl transition-opacity duration-700"></div>
+              
+              {/* Main card */}
+              <div className="relative bg-gradient-to-br from-fuchsia-500/10 via-purple-500/10 to-indigo-500/10 border-2 border-fuchsia-500/30 group-hover:border-fuchsia-500/40 p-8 lg:p-12 backdrop-blur-sm transition-all duration-700"
+                   style={{ clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))' }}>
+                
+                {/* Decorative corner accents */}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-fuchsia-500 to-purple-600 opacity-20 group-hover:opacity-25 transition-opacity duration-700"
+                     style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }}></div>
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 opacity-20 group-hover:opacity-25 transition-opacity duration-700"
+                     style={{ clipPath: 'polygon(0 100%, 100% 100%, 0 0)' }}></div>
+
+                <div className="relative flex flex-col lg:flex-row items-start gap-8">
+                  {/* Logo/Badge */}
+                  <div className="flex-shrink-0">
+                    {/* TAP Logo - Clickable */}
+                    <a 
+                      href="https://www.theaccelerationproject.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/logo relative block"
+                      aria-label="Visit The Acceleration Project website"
+                    >
+                      <div className="relative w-24 h-24 bg-white/95 flex items-center justify-center shadow-2xl border-2 border-fuchsia-500/30 group-hover/logo:border-fuchsia-500/60 transition-all duration-500 group-hover/logo:scale-105"
+                           style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                        <img 
+                          src="/TAP.jpg" 
+                          alt="The Acceleration Project Logo" 
+                          className="w-16 h-16 object-contain"
+                        />
+                        
+                        {/* Clickable hint */}
+                        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-fuchsia-500 flex items-center justify-center opacity-0 group-hover/logo:opacity-100 transition-all duration-300 shadow-lg"
+                             style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)' }}>
+                          <ExternalLink className="w-4 h-4 text-white" />
+                        </div>
+                        
+                        {/* Tooltip */}
+                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-2 bg-slate-900/95 backdrop-blur-sm border border-fuchsia-500/30 text-xs text-white whitespace-nowrap opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"
+                             style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
+                          Visit TAP Website
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <a 
+                        href="https://www.theaccelerationproject.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/title"
+                      >
+                        <h3 className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-400 font-pixel leading-relaxed group-hover/title:from-fuchsia-300 group-hover/title:via-purple-300 group-hover/title:to-indigo-300 transition-all duration-300 flex items-center gap-2">
+                          About TAP
+                          <ExternalLink className="w-5 h-5 text-fuchsia-400 opacity-0 group-hover/title:opacity-100 transition-opacity" />
+                        </h3>
+                      </a>
+                      <div className="h-px flex-1 bg-gradient-to-r from-fuchsia-500/50 to-transparent"></div>
+                    </div>
+                    
+                    <p className="text-slate-200 text-lg leading-relaxed mb-6">
+                      <span className="font-bold text-white">TAP (The Acceleration Project)</span> is a nonprofit organization serving 2,000+ under-resourced entrepreneurs, with a mission to unlock pathways to wealth creation and economic mobility by accelerating under-resourced small businesses through high-impact, customized support in strategy, operations, finance, and marketing.
+                    </p>
+
+                    {/* Key metrics */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center p-3 bg-white/5 border border-white/10 hover:border-white/15 transition-all duration-500"
+                           style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)' }}>
+                        <p className="text-sm text-slate-400 font-bold">Strategy</p>
+                      </div>
+                      <div className="text-center p-3 bg-white/5 border border-white/10 hover:border-white/15 transition-all duration-500"
+                           style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)' }}>
+                        <p className="text-sm text-slate-400 font-bold">Operations</p>
+                      </div>
+                      <div className="text-center p-3 bg-white/5 border border-white/10 hover:border-white/15 transition-all duration-500"
+                           style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)' }}>
+                        <p className="text-sm text-slate-400 font-bold">Finance</p>
+                      </div>
+                      <div className="text-center p-3 bg-white/5 border border-white/10 hover:border-white/15 transition-all duration-500"
+                           style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)' }}>
+                        <p className="text-sm text-slate-400 font-bold">Marketing</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent"></div>
+              </div>
+            </div>
           </div>
         </div>
 

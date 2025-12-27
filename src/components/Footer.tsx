@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-500/10 border border-fuchsia-500/30 text-sm text-fuchsia-300"
                    style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))' }}>
                 <Award className="w-4 h-4" />
-                <span className="font-pixel text-xs">Stanford Create+AI 2026</span>
+                <span className="font-pixel text-xs">Stanford Create + AI 2026</span>
               </div>
             </div>
 
