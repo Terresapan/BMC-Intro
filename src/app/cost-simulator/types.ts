@@ -32,4 +32,5 @@ export interface PieDataPoint {
   name: string;
   value: number;
   color: string;
+  [key: string]: string | number;
 }

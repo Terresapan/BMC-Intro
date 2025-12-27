@@ -2,8 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, Lightbulb, Loader2, Zap, RotateCcw } from 'lucide-react';
-import { GenerateContentResponse } from "@google/genai";
-import { streamChatResponse } from '../services/geminiService';
+import { streamChatAction } from '../app/actions';
 import { ChatMessage } from '../types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,13 +50,13 @@ export const InteractiveDemo: React.FC = () => {
     try {
       setMessages(prev => [...prev, { role: 'model', text: '', isStreaming: true }]);
 
-      const streamResult = await streamChatResponse(textToSend, messages);
+      // Call the Server Action
+      const stream = await streamChatAction(textToSend, messages);
       
       let fullText = '';
       
-      for await (const chunk of streamResult) {
-        const c = chunk as GenerateContentResponse;
-        const chunkText = c.text || '';
+      // Iterate over the stream returned by the Server Action
+      for await (const chunkText of stream) {
         fullText += chunkText;
         
         setMessages(prev => {
@@ -81,7 +80,7 @@ export const InteractiveDemo: React.FC = () => {
 
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'model', text: "Sorry, I'm having trouble connecting. Please make sure the Gemini API key is configured." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "Sorry, I'm having trouble connecting. Please make sure the Gemini API key is configured correctly in your project settings." }]);
     } finally {
       setLoading(false);
     }
