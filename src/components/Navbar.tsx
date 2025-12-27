@@ -46,9 +46,9 @@ export const Navbar = () => {
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-dark/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white">
+          <a href="/" className="font-pixel text-lg font-bold tracking-tighter flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
             <span className="text-2xl">🏘️</span> BMC TOWN
-          </div>
+          </a>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
@@ -90,9 +90,7 @@ export const Navbar = () => {
               className="hidden sm:inline-flex"
             >
               <a 
-                href="https://bmc-town-ai-cost-simulator-18196303090.us-west1.run.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="/cost-simulator"
               >
                 Cost Simulator
               </a>
@@ -169,9 +167,7 @@ export const Navbar = () => {
               className="w-full"
             >
               <a 
-                href="https://bmc-town-ai-cost-simulator-18196303090.us-west1.run.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="/cost-simulator"
                 onClick={handleLinkClick}
               >
                 Cost Simulator
