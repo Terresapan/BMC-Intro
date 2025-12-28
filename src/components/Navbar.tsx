@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
@@ -15,6 +16,7 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -53,7 +55,7 @@ export const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
-            {navLinks.map((link) => (
+            {pathname === '/' && navLinks.map((link) => (
               <a 
                 key={link.href}
                 href={link.href} 
@@ -127,7 +129,7 @@ export const Navbar = () => {
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}>
           <nav className="flex flex-col gap-2">
-            {navLinks.map((link, index) => (
+            {pathname === '/' && navLinks.map((link, index) => (
               <a
                 key={link.href}
                 href={link.href}
