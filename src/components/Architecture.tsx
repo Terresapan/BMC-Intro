@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { Database, Layout, Search, GitBranch, Workflow, Zap, ZoomIn } from 'lucide-react';
 
@@ -17,39 +17,57 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) =>
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const mouseStartRef = useRef({ x: 0, y: 0 });
 
-  const ZOOM_LEVEL = 0.9;
+  const ZOOM_LEVEL = 2.5;
+
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      e.preventDefault();
+      const newX = e.clientX - dragStart.x;
+      const newY = e.clientY - dragStart.y;
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleMouseUp = (e: MouseEvent) => {
+      setIsDragging(false);
+      
+      // Check for click (minimal movement)
+      const moveX = Math.abs(e.clientX - mouseStartRef.current.x);
+      const moveY = Math.abs(e.clientY - mouseStartRef.current.y);
+      
+      if (moveX < 5 && moveY < 5) {
+        if (isZoomed) {
+          // Zoom out
+          setIsZoomed(false);
+          setPosition({ x: 0, y: 0 });
+        } else {
+          // Zoom in
+          setIsZoomed(true);
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, dragStart, isZoomed]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsDragging(true);
-    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
-    mouseStartRef.current = { x: e.clientX, y: e.clientY };
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !isZoomed) return;
-    e.preventDefault();
-    const newX = e.clientX - dragStart.x;
-    const newY = e.clientY - dragStart.y;
-    setPosition({ x: newX, y: newY });
-  };
-
-  const handleMouseUp = (e: React.MouseEvent) => {
-    setIsDragging(false);
-    
-    // Check for click (minimal movement)
-    const moveX = Math.abs(e.clientX - mouseStartRef.current.x);
-    const moveY = Math.abs(e.clientY - mouseStartRef.current.y);
-    
-    if (moveX < 5 && moveY < 5) {
-      if (isZoomed) {
-        // Zoom out
-        setIsZoomed(false);
-        setPosition({ x: 0, y: 0 });
-      } else {
-        // Zoom in
-        setIsZoomed(true);
-      }
+    if (isZoomed) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+      mouseStartRef.current = { x: e.clientX, y: e.clientY };
+    } else {
+      // Just click to zoom in
+      mouseStartRef.current = { x: e.clientX, y: e.clientY };
+      setIsDragging(true); // Treat as drag start to detect click in mouseup
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
     }
   };
 
@@ -57,16 +75,13 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) =>
     <div 
       className={`relative overflow-hidden ${isZoomed ? 'cursor-grab active:cursor-grabbing' : 'cursor-zoom-in'} ${className}`}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={() => setIsDragging(false)}
     >
       <Image 
         src={src} 
         alt={alt} 
         fill
         draggable={false}
-        className="object-contain transition-transform duration-500 ease-in-out origin-center select-none"
+        className={`object-contain ease-in-out origin-center select-none ${isDragging ? '' : 'transition-transform duration-500'}`}
         sizes="(max-width: 768px) 100vw, 80vw"
         style={{ 
           transform: `translate(${position.x}px, ${position.y}px) scale(${isZoomed ? ZOOM_LEVEL : 1})` 
@@ -191,7 +206,7 @@ export const Architecture: React.FC = () => {
             
             {/* Flow Diagram - Takes 2 columns */}
             <div className="lg:col-span-2">
-              <div className="group relative max-h-[500px] overflow-hidden">
+              <div className="group relative h-[400px] lg:h-[500px] overflow-hidden">
                 <div className="absolute -inset-[2px] bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-500"></div>
                 
                 <div className="relative overflow-hidden border-2 border-white/10 group-hover:border-purple-500/30 transition-all duration-500 h-full flex items-center justify-center bg-slate-950/50"
