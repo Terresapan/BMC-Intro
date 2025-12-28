@@ -61,7 +61,7 @@ export const AuthorSection: React.FC = () => {
             {/* Social Links Row */}
             <div className="mt-6 flex justify-center gap-4">
               {[
-                { name: "Portfolio", icon: Globe, href: "https://agentgarden.lovable.app/" },
+                { name: "Portfolio", icon: Globe, href: "https://agentgarden-phi.vercel.app/" },
                 { name: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/in/terresa-pan-292443245/" },
                 { name: "GitHub", icon: GithubIcon, href: "https://github.com/Terresapan?tab=repositories" },
                 { name: "Podcast", icon: Mic, href: "https://open.spotify.com/show/0hYoXreD60u0S3p4vR0eWW" },
