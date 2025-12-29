@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Send, Sparkles, Lightbulb, Loader2, Zap, RotateCcw } from 'lucide-react';
 import { streamChatAction } from '../app/actions';
 import { ChatMessage } from '../types';
@@ -207,7 +208,7 @@ export const InteractiveDemo: React.FC = () => {
                       
                       <div className={`max-w-[80%] relative ${
                         msg.role === 'user' 
-                          ? 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-purple-900/30 p-4' 
+                          ? 'bg-gradient-to-r from-fuchsia-600/20 to-purple-600/20 border border-fuchsia-500/30 text-white shadow-lg shadow-purple-900/10 p-4' 
                           : 'bg-slate-800/70 text-slate-200 border-2 border-slate-700/50 shadow-md p-4'
                       }`}
                       style={{ 
@@ -215,7 +216,15 @@ export const InteractiveDemo: React.FC = () => {
                           ? 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)' 
                           : 'polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px))'
                       }}>
-                        <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.text}</p>
+                      <div className="whitespace-pre-wrap leading-relaxed text-[15px] [&>p]:mb-4 [&>p:last-child]:mb-0">
+                        <ReactMarkdown 
+                          components={{
+                            strong: (props) => <strong className={`font-bold ${msg.role === 'user' ? 'text-white' : 'text-fuchsia-300'}`} {...props} />
+                          }}
+                        >
+                          {msg.text}
+                        </ReactMarkdown>
+                      </div>
                         {msg.isStreaming && (
                           <span className="inline-block w-2 h-4 ml-1 bg-slate-400 align-middle"
                                 style={{ 

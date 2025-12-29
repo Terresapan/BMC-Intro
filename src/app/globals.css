@@ -26,6 +26,12 @@
   }
 }
 
+/* Global Selection Styles */
+::selection {
+  background-color: rgba(168, 85, 247, 0.5); /* Purple-500 with 50% opacity */
+  color: #ffffff;
+}
+
 /* Font utility classes using next/font CSS variables */
 .font-sans {
   font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
