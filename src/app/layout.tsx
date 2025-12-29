@@ -16,17 +16,17 @@ const pressStart2P = Press_Start_2P({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bmc-ui-635390037922.us-central1.run.app"),
   title: "Business Model Canvas Town | AI-Powered Strategy Platform",
-  description: "Transform business strategy into an adventure. Join BMC Town where AI agents like Steven Segments and Victor Value help you build robust business models in an immersive pixel-art world.",
+  description: "Expert-Level Strategy Guidance, Now Accessible to Everyone.",
   keywords: ["business model canvas", "AI strategy", "startup tools", "business planning", "gamified learning", "AI agents"],
   authors: [{ name: "Terresa Pan" }],
   creator: "Terresa Pan",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://bmc-town.vercel.app",
+    url: "https://bmc-intro.vercel.app",
     siteName: "Business Model Canvas Town",
-    title: "BMC Town | Where Strategy Becomes Adventure",
-    description: "Stop staring at static templates. Enter Business Model Canvas Town, where AI agents help you build robust business strategies in an immersive pixel-art world.",
+    title: "Business Model Canvas Town | AI-Powered Strategy Platform",
+    description: "Expert-Level Strategy Guidance, Now Accessible to Everyone.",
     images: [
       {
         url: "/og-image.png",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BMC Town | AI-Powered Business Strategy",
-    description: "Transform business strategy into an adventure with AI agents in a pixel-art world.",
+    title: "Business Model Canvas Town | AI-Powered Strategy Platform",
+    description: "Expert-Level Strategy Guidance, Now Accessible to Everyone.",
     images: ["/og-image.png"],
   },
   robots: {
