@@ -100,7 +100,7 @@ export const Hero: React.FC = () => {
             className="w-full sm:w-auto"
           >
             <a
-              href="https://youtu.be/QSCkFK_G-IU"
+              href="https://youtu.be/94p4BoQXLg8"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"
