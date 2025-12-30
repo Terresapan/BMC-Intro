@@ -19,7 +19,7 @@ import {
 
 export const FEATURES: Feature[] = [
   {
-    title: "Insights You&apos;d Never Ask For",
+    title: "Insights You'd Never Ask For",
     description: "The Canvas Advisor proactively surfaces cross-block connections — like a real consultant connecting the dots across your entire business model.",
     icon: Lightbulb,
     color: "from-fuchsia-500 to-purple-600",
@@ -44,7 +44,7 @@ export const FEATURES: Feature[] = [
     color: "from-blue-500 to-cyan-600"
   },
   {
-    title: "You&apos;re Always in Control",
+    title: "You're Always in Control",
     description: "Proactive suggestions are staged [SYS], not auto-applied. You confirm or dismiss each insight — the AI advises, never decides.",
     icon: Users,
     color: "from-cyan-500 to-teal-600"

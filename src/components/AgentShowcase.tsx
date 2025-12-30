@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { AGENTS } from '../constants';
-import { X, MessageCircle } from 'lucide-react';
+import { X, MessageCircle, ArrowRight } from 'lucide-react';
 
 // Position hints for where each agent's building is on the map (percentages)
 const AGENT_POSITIONS: Record<string, { top: string; left: string }> = {
@@ -44,10 +44,11 @@ export const AgentShowcase: React.FC = () => {
           <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20 group">
             {/* Hover Instruction Popup */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-              <div className="bg-slate-900/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl motion-safe:animate-float-slow">
+              <div className="bg-slate-900/70 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-xl motion-safe:animate-float-slow">
                 <p className="font-pixel text-sm text-fuchsia-200 tracking-wide flex items-center gap-2 drop-shadow-md">
                   <span className="animate-pulse text-fuchsia-400">⚡️</span>
                   Click the experts to explore
+                  <ArrowRight className="w-4 h-4 ml-1" />
                 </p>
               </div>
             </div>
@@ -98,7 +99,7 @@ export const AgentShowcase: React.FC = () => {
             })}
           </div>
 
-          <div className="absolute -right-4 top-1/2 -translate-y-1/2 hidden lg:block">
+          <div className="absolute -right-16 top-1/2 -translate-y-1/2 hidden lg:block">
             <div className="bg-slate-900/90 backdrop-blur-md rounded-xl border border-white/10 p-4 shadow-xl max-h-[500px] overflow-y-auto">
               <p className="text-xs text-slate-500 uppercase tracking-widest mb-3 font-bold">All AI Experts</p>
               <div className="space-y-1">
